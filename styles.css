@@ -142,7 +142,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== Projects — macOS desktop theme (1694 – 2750) ===== */
 
-.projects-bg { position: absolute; left: -4.5px; top: 1694px; width: 1449px; height: 1056px; object-fit: cover; }
+.projects-bg { position: absolute; left: -4.5px; top: 1694px; width: 1449px; height: 1037px; object-fit: cover; }
 
 .projects-heading { position: absolute; left: 50%; transform: translateX(-50%); top: 1741px; text-align: center; }
 .projects-title { font-size: 119.36px; line-height: 109.811px; letter-spacing: -5.3712px; color: #141414; white-space: nowrap; }
@@ -196,7 +196,7 @@ a { color: inherit; text-decoration: none; }
 .pj-tags { display: flex; gap: 52px; font-size: 16px; color: #1b1b1b; }
 
 .pj-dock { position: absolute; left: 427px; top: 2580px; width: 578px; }
-.pj-dog { position: absolute; left: 1228px; top: 2573px; width: 210px; }
+.pj-dog { position: absolute; left: 1228px; top: 2556px; width: 210px; }
 
 /* ===== Monthly recap / side quests (~2826 – 4030) ===== */
 
