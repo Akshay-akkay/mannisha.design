@@ -1,0 +1,108 @@
+/* Flebo case study (built from the Figma design export) */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, a { cursor: url("assets/cursor-pointer.svg") 9 4, auto; }
+
+body.cs {
+  font-family: 'Archivo', sans-serif;
+  color: #1c1c1c;
+  background: #f2f1ec;
+}
+
+.cs-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #f2f1ec;
+  background-image:
+    linear-gradient(to right, rgba(20, 20, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 20, 20, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  overflow-x: hidden;
+}
+
+.wrap { padding: 0 104px; }
+
+/* header */
+.cs-header { display: flex; justify-content: space-between; align-items: flex-start; padding-top: 56px; }
+.back { font-size: 15px; font-weight: 600; color: #1c1c1c; text-decoration: none; }
+.palette { display: flex; align-items: center; gap: 16px; }
+.swatches { display: grid; grid-template-columns: 22px 22px; grid-auto-rows: 22px; gap: 3px; }
+.swatches span { display: block; }
+.palette p { font-size: 11.5px; letter-spacing: 1.5px; color: #6f6d66; line-height: 1.5; }
+
+/* chips */
+.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 48px; }
+.chip { border: 1px solid #cfcdc4; background: #fff; padding: 10px 20px; font-size: 15.5px; font-weight: 600; }
+.chip.active { background: #111; color: #fff; border-color: #111; }
+
+/* hero text */
+h1 { margin-top: 40px; font-size: clamp(42px, 6.8vw, 97px); line-height: 1.07; letter-spacing: -0.035em; font-weight: 700; max-width: 1220px; }
+.sub { margin-top: 34px; font-size: clamp(18px, 1.7vw, 24px); max-width: 1180px; }
+
+.stats { display: flex; gap: 90px; flex-wrap: wrap; margin-top: 64px; }
+.stat .v { font-size: 40px; font-weight: 700; letter-spacing: -1px; }
+.stat .c { margin-top: 6px; font-size: 15px; color: #55534c; }
+.v.blue { color: #2b6cf0; } .v.teal { color: #0d9488; } .v.orange { color: #f0930d; }
+
+.meta {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  border-top: 1px solid #b9b7ae; margin-top: 44px; padding-top: 22px; padding-bottom: 40px;
+}
+.meta .k { font-size: 16px; color: #9a978f; }
+.meta .d { margin-top: 10px; font-size: 17.5px; font-weight: 700; }
+
+/* content */
+h2.hl {
+  display: inline-block; margin: 90px 0 8px;
+  background: #d6e03d; padding: 4px 18px 6px;
+  font-size: clamp(30px, 3.2vw, 46px); font-weight: 800; letter-spacing: -0.5px;
+}
+h3 { margin: 64px 0 6px; font-size: clamp(23px, 2.1vw, 30px); font-weight: 700; }
+h4 { margin: 34px 0 4px; font-size: 20px; font-weight: 700; }
+.cs p { margin-top: 26px; font-size: 19.5px; line-height: 1.55; max-width: 1230px; }
+.cs ul { margin: 18px 0 0 26px; }
+.cs li { margin-top: 10px; font-size: 19.5px; line-height: 1.5; }
+.cs blockquote {
+  margin: 40px 0; padding: 4px 0 4px 28px; border-left: 5px solid #e02020;
+  font-size: clamp(21px, 2vw, 27.5px); font-weight: 700; line-height: 1.35; max-width: 1200px;
+}
+
+/* figures */
+.fig { display: block; width: calc(100% + 52px); margin: 64px -26px; }
+.full { display: block; width: 100%; margin: 48px 0 0; }
+img { max-width: none; }
+
+/* footer */
+.zig {
+  height: 30px; margin-top: 110px;
+  background: conic-gradient(from 135deg at 50% 0%, #0e0e0e 90deg, #0000 0) 0 0 / 64px 30px repeat-x;
+}
+.cs-footer { background: #0e0e0e; color: #fff; margin-top: -1px; }
+.next { display: flex; align-items: center; gap: 34px; padding: 120px 0 150px; }
+.folder { width: 84px; }
+.next-label { font-size: 16px; font-weight: 600; }
+.next-label span { color: #8d8d8d; font-weight: 400; }
+.next-link { display: inline-block; margin-top: 10px; font-size: clamp(36px, 4vw, 58px); color: #fff; text-decoration: none; letter-spacing: -1px; }
+.foot-row {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.14); padding: 26px 0 34px; font-size: 14px; color: #9a9a9a;
+}
+.foot-row a { color: #d8d8d8; text-decoration: none; }
+
+/* reveals */
+@media (prefers-reduced-motion: no-preference) {
+  .rv { opacity: 0; translate: 0 26px; transition: opacity 0.7s ease, translate 0.8s cubic-bezier(0.22, 0.9, 0.3, 1); }
+  .rv.in { opacity: 1; translate: 0 0; }
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .wrap { padding: 0 22px; }
+  .fig { width: calc(100% + 20px); margin: 40px -10px; }
+  .meta { grid-template-columns: 1fr 1fr; }
+  .stats { gap: 40px; margin-top: 44px; }
+  h2.hl { margin-top: 60px; }
+  .next { padding: 70px 0 90px; gap: 20px; }
+  .folder { width: 56px; }
+}

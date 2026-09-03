@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Re-design Flebo — Case Study — Manisha Koranga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="flebo.css">
+</head>
+<body class="cs">
+<div class="cs-page">
+  <div class="wrap">
+
+    <header class="cs-header">
+      <a class="back" href="./">&larr;&nbsp; back to the desk</a>
+      <div class="palette">
+        <div class="swatches">
+          <span style="background:#e8433f"></span><span style="background:#172a4d"></span>
+          <span style="background:#2aa85c"></span><span style="background:#e9c73f"></span>
+        </div>
+        <p>COLOUR<br>PALETTE</p>
+      </div>
+    </header>
+
+    <div class="chips">
+      <span class="chip active">Flebo</span>
+      <span class="chip">UX</span>
+      <span class="chip">Conversion Optimisation</span>
+      <span class="chip">AI Summary</span>
+      <span class="chip">Booking Flow</span>
+    </div>
+
+    <h1>Designing Trust Into Diagnostics From Booking To Understanding Your&nbsp;Results.</h1>
+    <p class="sub">A UX/UI case study on rethinking Flebo's booking, sample collection, and report experience at home or in the lab.</p>
+
+    <div class="stats">
+      <div class="stat"><p class="v blue">58 &rarr; 63%</p><p class="c">PDP &rarr; Cart Progression</p></div>
+      <div class="stat"><p class="v teal">-fatigue</p><p class="c">faster decisions</p></div>
+      <div class="stat"><p class="v orange">X%</p><p class="c">PDP &rarr; Cart Progression</p></div>
+    </div>
+
+    <div class="meta">
+      <div><p class="k">role</p><p class="d">research, UX/UI, front-end build</p></div>
+      <div><p class="k">timeline</p><p class="d">10 weeks, May&ndash;Jul 2026</p></div>
+      <div><p class="k">tools</p><p class="d">Claude Code, HTML/CSS/JS, git</p></div>
+      <div><p class="k">platform</p><p class="d">responsive web (desktop + mobile)</p></div>
+    </div>
+  </div>
+
+  <img class="full" src="assets/flebo/hero.jpg" alt="Flebo homepage on a MacBook">
+
+  <div class="wrap">
+    <h2 class="hl">Brief</h2>
+    <p>At Flebo, the Product Detail Page (PDP) plays a critical role in the conversion journey. Users discover packages and tests, evaluate trust signals, compare labs, and decide whether to move forward with a booking..</p>
+    <p>But while tracking user behaviour across the funnel, we noticed a recurring problem:</p>
+    <blockquote>Users were spending time on the PDP, especially around packages, but many were exiting before making a booking.</blockquote>
+    <p>This confusion was directly <strong>impacting user trust</strong> and <strong>decision-making.</strong></p>
+    <p>In healthcare, users rarely book based on a package name alone. They need to know exactly which tests they're getting and why. When the same package showed 58 tests at one lab and 98 at another, users had no reliable way to compare, and hesitation turned into drop-off. Users weigh price, turnaround time, accreditation, and reviews before choosing where to go. Consistent, verifiable test information had become the foundation of the entire booking decision.</p>
+    <h4>The problem was</h4>
+    <p>Users couldn't trust what they were booking, what they'd pay, or where to go and so many never finished booking at all.</p>
+
+    <h2 class="hl">Understanding the problem</h2>
+    <p>To understand what was happening I collaborated with the product owner to understand and analyse the user behaviour from past.</p>
+    <h4>What we discovered</h4>
+    <p>User were actively looking for packages but it was too difficult to understand what package is providing which test and even someone moves forward after selecting a package it was the lab listing page which shows multiple labs providing the selected package. But every lab is providing different number of tests and pricing is also different.</p>
+    <blockquote>The audit found four trust failures, all variations of one theme &mdash; numbers without context:</blockquote>
+    <img class="fig" src="assets/flebo/packages.jpg" alt="Flebo package cards annotated with the four trust failures">
+
+    <h2 class="hl">What I learned and fixed</h2>
+    <h3>Phase 1: Solving the Clarity Gap</h3>
+    <p>Our first objective was simple:</p>
+    <blockquote>make booking a package or test feel clear from the very first step.</blockquote>
+    <p>Rather than simply reducing the number of screens, we focused on the points where users lost confidence.</p>
+    <p>We redesigned the booking flow into a shorter, linear journey and surfaced pricing early, before users spent time entering their details. We also reorganised the navigation around what users actually came for: tests, packages, labs, and reports.</p>
+    <h4>The experience was designed to feel</h4>
+    <ul><li>Predictable</li><li>Transparent</li><li>Quick</li></ul>
+    <p>The goal wasn't just to reduce steps. It was to give users enough clarity to trust the process before committing. <strong>And it worked</strong></p>
+    <blockquote>Users saw the package details 2 steps earlier, and during testing, nobody described the flow as confusing.</blockquote>
+    <p>But solving one problem exposed other.</p>
+
+    <h3>A New UX Problem Emerged</h3>
+    <p>Once package detail was visible, users started comparing labs before booking. But that comparison quickly exposed another problem: <strong>the same package could look very different from one lab to another.</strong></p>
+    <p>For example, a user might select Package A with 89 tests. Once they reached the lab listing, they could see that the same package offered by different labs had different test counts &mdash; and different prices.<br>
+    This was not necessarily an error. Each lab could structure and price the package differently. But the experience didn't make that distinction clear.</p>
+    <h4>Users were left asking:</h4>
+    <ul>
+      <li>Why does the same package have a different number of tests?</li>
+      <li>What exactly is included in each lab's version of the package?</li>
+      <li>Why is one lab charging more for what appears to be the same package?</li>
+      <li>Which option actually gives me better value?</li>
+    </ul>
+    <p>In testing, users opened multiple lab pages, compared prices manually, and went back and forth between packages to understand what they were actually getting.</p>
+    <img class="fig" src="assets/flebo/lablist.jpg" alt="Lab listing showing different test counts and prices per lab">
+    <p>The problem was no longer simply</p>
+    <blockquote>Users can't see the package details.</blockquote>
+    <p>It became</p>
+    <blockquote>Users can see the lab list, but they can't see which tests and parameters are included at each lab, compare the differences, or understand that the package can vary from lab to lab.</blockquote>
+    <p>Making package detailed card had created a bigger comparison problem: users needed a clear way to compare both the price and what was included in each lab's version of the package.</p>
+
+    <h3>Phase 2: Making Comparison Reliable</h3>
+    <p>At this point, we looked beyond how users moved through the flow and focused on how they actually made the decision.</p>
+    <p>Price wasn't the only factor. Users were weighing price, turnaround time, accreditation, and what was included in the package.</p>
+    <p>Instead of making users collect that information across different pages, we asked:</p>
+    <blockquote>What if comparison happened in one place, with the same information for every lab?</blockquote>
+    <p>We introduced a side-by-side lab comparison and standardised package information so the full test list was always visible.</p>
+    <p>We also allowed users to remove tests they didn't need from a package.</p>
+    <img class="fig" src="assets/flebo/compare1.jpg" alt="Lab listing with compare checkboxes">
+    <img class="fig" src="assets/flebo/compare2.jpg" alt="Side-by-side package comparison modal">
+    <p>The goal wasn't to add more information. It was to make the information consistent enough for users to make a decision.</p>
+    <p>The comparison reduced back-and-forth between pages, and users had more confidence in package details once they could see exactly what was included.</p>
+    <p><strong>But giving users more control exposed another gap.</strong></p>
+
+    <h3>The Next Problem &mdash; Control Without Context</h3>
+    <p>Once a user selected a package, the listing page showed every test included in that package as a pill above the lab list. Each test had a cross icon, allowing users to remove it.</p>
+    <blockquote>On paper, this gave users control over the package. In practice, it created more confusion.</blockquote>
+    <p>Most users aren't familiar with individual test names or what each test is meant to measure. Removing a test without understanding its purpose could mean removing something they actually needed. And once removed, there was no clear context to help them decide whether to add it back. We also found that editing a package at the individual-test level wasn't the right interaction for this journey.</p>
+    <p>So we removed the option to edit or remove tests directly from an existing package.</p>
+    <p><strong>Instead, once users selected a lab and moved into the booking flow, they had clearer choices:</strong></p>
+    <ul>
+      <li>Replace the entire package with another package</li>
+      <li>Add another package</li>
+      <li>Add individual tests if they needed something extra</li>
+    </ul>
+    <p>The package itself remained intact.</p>
+    <p><strong>This reduced the need for users to make decisions about individual tests they might not understand, while still giving them flexibility to add what they needed.</strong></p>
+    <img class="fig" src="assets/flebo/booking.jpg" alt="Booking flow: patient and package details with an intact package">
+    <img class="fig" src="assets/flebo/changepkg.jpg" alt="Change package modal">
+    <img class="fig" src="assets/flebo/addtests.jpg" alt="Add tests or packages modal">
+
+    <h3>Phase 3: Extending Trust Beyond Booking</h3>
+    <blockquote>The Solution : AI-Powered Report Summaries</blockquote>
+    <p>For most people, a lab report is a wall of numbers without much context.</p>
+    <p>Users don't just need their results. They need to understand what those results mean for them.</p>
+    <h4>When users opened their report, they saw:</h4>
+    <ul>
+      <li>Short, plain-language summary of their results.</li>
+      <li>Clear indicators for values within and outside the normal range.</li>
+      <li>And action plans to bring flagged markers back on track.</li>
+    </ul>
+    <img class="fig" src="assets/flebo/aireport.jpg" alt="AI report analysis health overview">
+    <img class="fig" src="assets/flebo/keyfind.jpg" alt="Key findings with graphical markers">
+    <img class="fig" src="assets/flebo/actionplans.jpg" alt="Normal findings and action plans">
+
+    <h2 class="hl">Designing for Responsibility</h2>
+    <p>A key UX decision was to avoid language that could be interpreted as a diagnosis.</p>
+    <p>Health results are personal and context-dependent. <strong>The same value can mean different things for different people.</strong></p>
+    <p>Instead of</p>
+    <blockquote>Your result is bad</blockquote>
+    <p>The experience focused on:</p>
+    <blockquote>This value is outside the typical range here's what it usually relates to, and what to ask your doctor.</blockquote>
+    <p>This moved the experience from raw data to useful context while keeping medical judgement where it belongs.</p>
+    <p>From a product perspective, trust no longer ended at booking. It continued through to the point where users needed clarity most.</p>
+
+    <h2 class="hl">My Contribution</h2>
+    <p><strong>As the UX/UI Designer on the project, I worked on:</strong></p>
+    <ul>
+      <li>Auditing the existing booking flow and identifying friction and trust gaps</li>
+      <li>Documenting package and pricing inconsistencies across labs</li>
+      <li>Redesigning the booking journey and navigation structure</li>
+      <li>Designing the lab comparison and editable package experience</li>
+      <li>Defining the AI report summary experience from a UX perspective</li>
+      <li>Running usability testing across each iteration</li>
+    </ul>
+
+    <h2 class="hl">The Design</h2>
+  </div>
+
+  <img class="full" src="assets/flebo/thedesign.jpg" alt="Flebo redesign on a MacBook over a textured blue backdrop">
+
+  <div class="wrap">
+    <h2 class="hl">Outcomes</h2>
+    <p>The redesign changed how users moved from intent to booking, and from receiving results to understanding them.</p>
+    <h4>Impact</h4>
+    <ul>
+      <li>The broken booking flow was fixed and it was reduced to 5 steps.</li>
+      <li>Faster user decision - making</li>
+      <li>Better interaction with the packages PDP</li>
+      <li>Reduced friction in comparing the labs</li>
+      <li>Increased the transparency of tests and parameters in packages.</li>
+    </ul>
+
+    <h2 class="hl">Key Learning</h2>
+    <p>One of the biggest learnings from this project was that transparency creates new expectations.</p>
+    <p>Showing the price solved one problem, but immediately raised the next question:<br>what am I paying for, and which option should I choose?</p>
+    <p>Each improvement exposed the next gap.</p>
+    <blockquote>Trust in a healthcare product isn't built at one point in the journey. It's cumulative. A hidden price, an inconsistent test list, or an unexplained result can undermine the confidence built earlier.</blockquote>
+    <p>This project reinforced that good UX in high-stakes journeys isn't about giving users more information. It's about making sure the information is clear, consistent, and useful enough to trust at every step.</p>
+  </div>
+
+  <div class="zig"></div>
+  <footer class="cs-footer">
+    <div class="wrap">
+      <div class="next">
+        <img class="folder" src="assets/flebo/folder.png" alt="">
+        <div>
+          <p class="next-label">next up - Menteiz Aviation &nbsp;<span>/ back to the folder</span></p>
+          <a class="next-link" href="#">Menteiz Aviation &rarr;</a>
+        </div>
+      </div>
+      <div class="foot-row">
+        <p>&copy; 2026 manisha koranga</p>
+        <a href="./">back to desk &uarr;</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // gentle fade-up reveals
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    document.querySelectorAll('.hl, h3, blockquote, .fig, .full, .stats, .meta').forEach((el, i) => {
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
+</script>
+</body>
+</html>
