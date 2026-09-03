@@ -140,43 +140,63 @@ a { color: inherit; text-decoration: none; }
 .corner-tr { left: 511.46px; top: 0; border-top: 2px solid #141414; border-right: 2px solid #141414; }
 .corner-bl { left: 0; top: 267px; border-bottom: 2px solid #141414; border-left: 2px solid #141414; }
 
-/* ===== Projects (1694 – 2695) ===== */
+/* ===== Projects — macOS desktop theme (1694 – 2750) ===== */
 
-.projects-bg { position: absolute; left: -4.5px; top: 1694px; width: 1449px; height: 1001px; object-fit: cover; }
+.projects-bg { position: absolute; left: -4.5px; top: 1694px; width: 1449px; height: 1056px; object-fit: cover; }
 
-.projects-heading { position: absolute; left: 527px; top: 1751px; width: 386px; display: flex; flex-direction: column; align-items: center; }
-.projects-script { width: 100%; text-align: center; font-size: 42px; line-height: 81px; letter-spacing: -3.37px; color: #fff; }
+.projects-heading { position: absolute; left: 50%; transform: translateX(-50%); top: 1741px; text-align: center; }
 .projects-title { font-size: 119.36px; line-height: 109.811px; letter-spacing: -5.3712px; color: #141414; white-space: nowrap; }
-
-.project-card { position: absolute; left: 293px; top: 2018px; width: 860px; height: 590px; }
-.card-bg { position: absolute; inset: 0; background: #e0b9e2; border-radius: 26px; box-shadow: 0 18px 40px rgba(0,0,0,0.13); }
-.card-shot { position: absolute; left: 25px; top: 83px; width: 810px; height: 373px; border-radius: 8px; object-fit: cover; }
-.card-row { position: absolute; left: 33px; top: 478px; width: 802px; display: flex; align-items: center; justify-content: space-between; }
-.card-text { width: 448px; }
-.card-text h3 { font-weight: 600; font-size: 38px; color: #1b1b1b; }
-.card-text p { margin-top: 2px; font-size: 17.21px; line-height: 25px; letter-spacing: -0.32px; color: #141414; }
-.card-btn {
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  width: 160px; height: 42px; background: #333; border-radius: 4px;
-  font-family: 'Poppins', sans-serif; font-size: 15px; color: #fff; text-align: center;
+.projects-script {
+  position: absolute; left: 50%; top: 84px; transform: translateX(-50%) rotate(-3deg);
+  font-size: 42px; line-height: 44px; letter-spacing: -2px; color: #fff;
+  white-space: nowrap; text-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
 
-.project-tabs { position: absolute; left: 293px; top: 2004px; width: 860px; height: 70px; }
-.tab {
-  position: absolute; top: 0; height: 70px; border-radius: 22px 22px 0 0;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 18px; color: #222;
+.pj-calendar {
+  position: absolute; left: 50px; top: 1767px; width: 154px; height: 144px;
+  background: #fff; border-radius: 14px; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  padding: 12px 14px;
 }
-.tab-3 { left: 578px; width: 282px; background: #eaeaea; }
-.tab-2 { left: 297px; width: 287px; background: #f4f4f4; }
-.tab-1 { left: 0; width: 307px; background: #fff; }
+.cal-day { color: #e8484f; font-size: 11px; font-weight: 600; }
+.cal-date { font-size: 33px; font-weight: 500; color: #141414; line-height: 1.15; }
+.cal-event { margin-top: 10px; border-left: 3px solid #c94f9e; padding-left: 8px; }
+.cal-title { font-size: 12.5px; font-weight: 700; color: #141414; }
+.cal-sub { font-size: 11px; color: #555; line-height: 1.45; }
 
-.projects-flower-wrap { left: 771px; top: 1709px; width: 644.988px; height: 644.988px; }
-.projects-flower { width: 456.089px; height: 456.089px; transform: rotate(-44.55deg); object-fit: cover; }
+.pj-folder { position: absolute; left: 1207px; top: 1782px; width: 170px; display: flex; flex-direction: column; align-items: center; }
+.pj-folder-icon { width: 92px; height: 92px; object-fit: contain; }
+.pj-folder-clip { position: absolute; right: -10px; top: 32px; width: 58px; height: 58px; object-fit: contain; transform: rotate(-40deg); }
+.pj-folder-caption { display: flex; align-items: center; margin-top: 4px; font-size: 13.5px; color: #2b2b2b; white-space: nowrap; }
+.pj-folder-caption img { width: 12px; height: 12px; object-fit: cover; }
 
-.tab1-doodle { position: absolute; left: 383px; top: 1986px; width: 125px; height: 106px; overflow: hidden; }
-.tab1-doodle img { position: absolute; left: 0; top: -30.76%; width: 100%; height: 176.26%; max-width: none; }
-.tab1-num { position: absolute; left: 445px; top: 2039px; transform: translate(-50%, -50%); font-weight: 700; font-size: 18px; color: #222; }
+.pj-survival { position: absolute; left: 1277px; top: 1934px; width: 106px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pj-survival img { width: 106px; height: 67px; object-fit: cover; }
+.pj-survival p { font-size: 12px; color: #2b2b2b; }
+
+.pj-window {
+  position: absolute; left: 265px; top: 1923px; width: 899px; height: 643px;
+  background: #fff; border-radius: 16px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+.pj-toolbar {
+  display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 20px;
+  background: #f7f6f4; border-bottom: 1px solid #e8e6e2; border-radius: 16px 16px 0 0;
+}
+.tl { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }
+.tl-r { background: #ff5f57; } .tl-y { background: #febc2e; } .tl-g { background: #28c840; }
+.pj-arrow { font-size: 19px; color: #a3a09b; line-height: 1; }
+.pj-arrow:first-of-type { margin-left: 10px; }
+.pj-search { flex: 1; height: 30px; margin: 0 6px 0 10px; background: #fff; border: 1px solid #e3e1dd; border-radius: 999px; position: relative; }
+.pj-mag { position: absolute; right: 14px; top: 7px; width: 10px; height: 10px; border: 1.8px solid #9a978f; border-radius: 50%; }
+.pj-mag::after { content: ""; position: absolute; width: 1.8px; height: 5px; background: #9a978f; left: 9px; top: 8px; rotate: -45deg; }
+.pj-dots { color: #a3a09b; font-size: 18px; }
+.pj-shot { margin: 0 17px; height: 506px; overflow: hidden; }
+.pj-shot img { width: 100%; height: 100%; object-fit: cover; }
+.pj-meta { display: flex; align-items: center; justify-content: space-between; padding: 14px 26px 0; }
+.pj-meta h3 { font-size: 34px; font-weight: 600; color: #141414; }
+.pj-tags { display: flex; gap: 52px; font-size: 16px; color: #1b1b1b; }
+
+.pj-dock { position: absolute; left: 427px; top: 2580px; width: 578px; }
+.pj-dog { position: absolute; left: 1228px; top: 2573px; width: 210px; }
 
 /* ===== Monthly recap / side quests (~2826 – 4030) ===== */
 

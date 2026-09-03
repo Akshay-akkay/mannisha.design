@@ -50,29 +50,45 @@
   <img class="hero-photo-6" src="assets/hero-photo-6.png" alt="">
   <div class="hero-photo-7-wrap rot-wrap"><img class="hero-photo-7" src="assets/hero-photo-2.png" alt=""></div>
 
-  <!-- ===== Projects section ===== -->
+  <!-- ===== Projects section (macOS desktop theme) ===== -->
   <img class="projects-bg" src="assets/projects-bg.png" alt="">
   <div class="projects-heading">
-    <p class="projects-script hand">things i&rsquo;ve designed</p>
     <h2 class="projects-title">projects</h2>
+    <p class="projects-script hand">things i&rsquo;ve designed</p>
   </div>
-  <div class="project-card">
-    <div class="card-bg"></div>
-    <img class="card-shot" src="assets/project-flebo.png" alt="Flebo case study on a MacBook Pro">
-    <div class="card-row">
-      <div class="card-text">
-        <h3>Re-design Flebo</h3>
-        <p>A UX/UI case study on rethinking Flebo's booking, sample collection, and report experience at home or in the lab.</p>
-      </div>
-      <a class="card-btn" href="#" data-cursor="cta" data-cursor-label="view">Read more</a>
+  <div class="pj-calendar">
+    <p class="cal-day">Monday</p>
+    <p class="cal-date">22</p>
+    <div class="cal-event">
+      <p class="cal-title">Apple Keynote</p>
+      <p class="cal-sub">Online</p>
+      <p class="cal-sub">10:00-11:30</p>
     </div>
   </div>
-  <div class="project-tabs">
-    <div class="tab tab-3">3</div>
-    <div class="tab tab-2">2</div>
-    <div class="tab tab-1"></div>
+  <div class="pj-folder">
+    <img class="pj-folder-icon" src="assets/recap-photo-2.png" alt="Folder">
+    <img class="pj-folder-clip" src="assets/projects-flower.png" alt="">
+    <p class="pj-folder-caption">late night experiments<img src="assets/star.png" alt=""></p>
   </div>
-  <div class="projects-flower-wrap rot-wrap"><img class="projects-flower" src="assets/projects-flower.png" alt=""></div>
+  <div class="pj-survival">
+    <img src="assets/recap-survival.png" alt="">
+    <p>survival<span class="hand">.</span>jpg</p>
+  </div>
+  <div class="pj-window" data-cursor="cta" data-cursor-label="view">
+    <div class="pj-toolbar">
+      <span class="tl tl-r"></span><span class="tl tl-y"></span><span class="tl tl-g"></span>
+      <span class="pj-arrow">&#8592;</span><span class="pj-arrow">&#8594;</span>
+      <div class="pj-search"><span class="pj-mag"></span></div>
+      <span class="pj-dots">&#8942;</span>
+    </div>
+    <div class="pj-shot"><img src="assets/project-flebo.png" alt="Flebo redesign shown on a MacBook"></div>
+    <div class="pj-meta">
+      <h3>Re-design Flebo</h3>
+      <div class="pj-tags"><span>UX Designer</span><span>Figma, Claude</span><span>2026</span></div>
+    </div>
+  </div>
+  <img class="pj-dock" src="assets/projects-dock.png" alt="macOS dock">
+  <img class="pj-dog" src="assets/projects-dog.png" alt="">
 
   <!-- ===== Hero name + nav (painted above collage) ===== -->
   <div class="hero-name">
@@ -86,10 +102,6 @@
       <a class="nav-cta" href="#contact" data-scroll-to="contact" data-cursor="cta" data-cursor-label="chat">Let&rsquo;s chat <img src="assets/arrow-right.svg" alt=""></a>
     </div>
   </nav>
-
-  <!-- Tab 1 doodle + number -->
-  <div class="tab1-doodle"><img src="assets/tab-doodle.png" alt=""></div>
-  <div class="tab1-num">1</div>
 
   <!-- ===== Monthly recap / side quests ===== -->
   <div class="recap-side-quests">
@@ -217,7 +229,7 @@
     const badgeText = c.querySelector('.c-badge span');
     document.documentElement.classList.add('has-custom-cursor');
 
-    const PHOTOS = '.rot-wrap,.hero-photo-1,.hero-photo-4,.hero-photo-5-wrap,.hero-portrait,.hero-photo-6,.card-shot,.tab1-doodle,.recap-photo-1,.recap-col,.cart-collage img,.procreate-art-1,.procreate-art-2,.procreate-art-4,.talk-couch,.talk-photo';
+    const PHOTOS = '.rot-wrap,.hero-photo-1,.hero-photo-4,.hero-photo-5-wrap,.hero-portrait,.hero-photo-6,.pj-folder,.pj-survival,.pj-dog,.recap-photo-1,.recap-col,.cart-collage img,.procreate-art-1,.procreate-art-2,.procreate-art-4,.talk-couch,.talk-photo';
     const HEADINGS = '.hero-tagline,.hero-name,.about-heading,.projects-heading,.recap-monthly,.recap-recap,.recap-side-quests,.procreate-heading,.cart-title,.talk-head';
 
     let tx = -100, ty = -100, x = tx, y = ty, shown = false;
@@ -337,13 +349,16 @@
     each('.corner-tr', () => ({ dx: -255.8, dy: 133.5, delay: 180, dur: 0.75 }));
     each('.corner-bl', () => ({ dx: 255.7, dy: -133.5, delay: 180, dur: 0.75 }));
 
-    // Projects: heading rises, card rises, tabs slide up from behind the card, stickers spin in
-    each('.projects-script', () => ({ dy: -20 }));
-    each('.projects-title', () => ({ dy: 36, delay: 140 }));
-    each('.project-card', () => ({ dy: 60, delay: 220 }));
-    each('.project-tabs', () => ({ dy: 46, delay: 480 }));
-    each('.tab1-doodle,.tab1-num', (el, i) => ({ dy: 14, scale: 0.6, delay: 700 + i * 90 }));
-    each('.projects-flower-wrap', () => ({ rot: -30, scale: 0.7, dy: 0, delay: 420 }));
+    // Projects (macOS desktop): title rises, script signs over it, browser window
+    // opens, dock slides up from the bottom, desktop items pop into place
+    each('.projects-title', () => ({ dy: 36 }));
+    each('.projects-script', () => ({ dy: -14, delay: 280 }));
+    each('.pj-window', () => ({ dy: 70, scale: 0.94, delay: 180 }));
+    each('.pj-calendar', () => ({ dx: -60, dy: 0, delay: 260 }));
+    each('.pj-folder', () => ({ dy: -24, delay: 380 }));
+    each('.pj-survival', () => ({ dx: 50, dy: 0, delay: 480 }));
+    each('.pj-dock', () => ({ dy: 90, delay: 540 }));
+    each('.pj-dog', () => ({ dx: 80, dy: 0, delay: 680 }));
 
     // Monthly recap: heading rises, polaroids fly out from behind it to their spots,
     // then the cursor drags the selection box across "recap" (growing from its
