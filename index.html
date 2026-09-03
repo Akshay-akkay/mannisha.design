@@ -170,30 +170,21 @@
   </div>
   <p class="cart-title">life in a <span class="hand">cart</span></p>
 
-  <!-- ===== Let's talk ===== -->
-  <section class="talk">
-    <img class="talk-bg" src="assets/talk-bg.png" alt="">
-    <div class="talk-head">
+  <!-- ===== Let's talk + footer (pink hill) ===== -->
+  <section class="talk2">
+    <img class="t2-art" src="assets/talk-hill.jpg" alt="Dog, cat and duck in sunglasses lounging on a grassy hill">
+    <div class="t2-head">
       <h2>let&rsquo;s talk</h2>
-      <div class="talk-sub hand">
-        <p>connection. presence. join the conversation</p>
-        <p class="center">there is a place for every idea</p>
+      <div class="t2-sub hand">
+        <p>connection. presence: join the conversation</p>
+        <p>there is a place for every idea</p>
       </div>
     </div>
-    <div class="talk-scene">
-      <div class="talk-couch"><img src="assets/talk-couch.png" alt="Illustrated couch"></div>
-      <div class="talk-email-wrap rot-wrap"><a class="talk-pill talk-email" href="mailto:manisha.design17@gmail.com" data-cursor="cta" data-cursor-label="say hi">manisha.design17@gmail.com</a></div>
-      <div class="talk-doodle-wrap rot-wrap"><img class="talk-doodle" src="assets/talk-doodle.png" alt=""></div>
-      <div class="talk-resume-wrap rot-wrap"><a class="talk-pill talk-resume" href="#" data-cursor="cta" data-cursor-label="cv">Resume</a></div>
-    </div>
+    <a class="t2-pill t2-resume" href="#" data-cursor="cta" data-cursor-label="cv">Resume</a>
+    <a class="t2-pill t2-email" href="mailto:design.manisha17@gmail.com" data-cursor="cta" data-cursor-label="say hi">design.manisha17@gmail.com</a>
+    <a class="t2-linkedin" href="#" data-cursor="cta" data-cursor-label="connect"><img src="assets/linkedin.png" alt="LinkedIn"></a>
+    <p class="t2-chai hand">made with too much chai</p>
   </section>
-  <div class="talk-photo"><img src="assets/talk-photo.png" alt=""></div>
-
-  <!-- ===== Footer ===== -->
-  <img class="footer-bg" src="assets/footer-bg.png" alt="">
-  <div class="footer-line">
-    <p class="footer-note hand">made with too much chai</p>
-  </div>
 
 </main>
 </div>
@@ -217,7 +208,7 @@
     const s = Math.min(1, w / 1440);
     const x = Math.max(0, (w - 1440 * s) / 2);
     page.style.transform = `translateX(${x}px) scale(${s})`;
-    stage.style.height = `${8178 * s}px`;
+    stage.style.height = `${8212 * s}px`;
   }
   addEventListener('resize', fit);
   fit();
@@ -229,8 +220,8 @@
     const badgeText = c.querySelector('.c-badge span');
     document.documentElement.classList.add('has-custom-cursor');
 
-    const PHOTOS = '.rot-wrap,.hero-photo-1,.hero-photo-4,.hero-photo-5-wrap,.hero-portrait,.hero-photo-6,.pj-folder,.pj-survival,.pj-dog,.recap-photo-1,.recap-col,.cart-collage img,.procreate-art-1,.procreate-art-2,.procreate-art-4,.talk-couch,.talk-photo';
-    const HEADINGS = '.hero-tagline,.hero-name,.about-heading,.projects-heading,.recap-monthly,.recap-recap,.recap-side-quests,.procreate-heading,.cart-title,.talk-head';
+    const PHOTOS = '.rot-wrap,.hero-photo-1,.hero-photo-4,.hero-photo-5-wrap,.hero-portrait,.hero-photo-6,.pj-folder,.pj-survival,.pj-dog,.recap-photo-1,.recap-col,.cart-collage img,.procreate-art-1,.procreate-art-2,.procreate-art-4,.t2-art';
+    const HEADINGS = '.hero-tagline,.hero-name,.about-heading,.projects-heading,.recap-monthly,.recap-recap,.recap-side-quests,.procreate-heading,.cart-title,.t2-head';
 
     let tx = -100, ty = -100, x = tx, y = ty, shown = false;
 
@@ -419,25 +410,23 @@
     addWipe('.procreate-art-4', 'wipe-right', 550);
     addWipe('.procreate-art-2', 'wipe-left', 750);
 
-    // Let's talk: the heading rises from behind the sofa (the scene paints over it,
-    // clipping it while it emerges); the LinkedIn doodle bounces in like a basketball
-    // and settles on the couch; pills still get tossed on, photo peeks from the right
-    each('.talk-head h2', () => ({ dy: 240, dur: 0.9 }));
-    each('.talk-sub', () => ({ dy: 18, delay: 500 }));
-    each('.talk-couch', () => ({ dy: 30, scale: 0.97, delay: 240 }));
-    each('.talk-email-wrap', () => ({ dy: -80, rot: -12, delay: 520 }));
-    each('.talk-resume-wrap', () => ({ dy: -80, rot: 10, delay: 780 }));
-    each('.talk-photo', () => ({ dx: 80, dy: 0, delay: 340 }));
+    // Let's talk: heading rises, scene settles in, pills get tossed on with a spin,
+    // the LinkedIn sticker bounces in like a basketball, and the chai line
+    // writes itself out over the grass
+    each('.t2-art', () => ({ dy: 26, dur: 1 }));
+    each('.t2-head', () => ({ dy: 34, delay: 150 }));
+    each('.t2-resume', () => ({ dy: -80, rot: -14, delay: 460 }));
+    each('.t2-email', () => ({ dy: -80, rot: 12, delay: 620 }));
     {
-      const ball = document.querySelector('.talk-doodle-wrap');
+      const ball = document.querySelector('.t2-linkedin');
       ball.style.opacity = '0';
       tossQueue.push({
-        el: ball, duration: 1400, delay: 600, frames: [
-          { offset: 0, opacity: 0, translate: '-300px -520px', rotate: '-240deg', easing: 'ease-in' },
+        el: ball, duration: 1400, delay: 700, frames: [
+          { offset: 0, opacity: 0, translate: '200px -560px', rotate: '240deg', easing: 'ease-in' },
           { offset: 0.05, opacity: 1 },
-          { offset: 0.35, translate: '-120px 0px', rotate: '-130deg', scale: '1.08 0.9', easing: 'ease-out' },
+          { offset: 0.35, translate: '80px 0px', rotate: '130deg', scale: '1.08 0.9', easing: 'ease-out' },
           { offset: 0.38, scale: '1 1' },
-          { offset: 0.55, translate: '-55px -150px', rotate: '-60deg', easing: 'ease-in' },
+          { offset: 0.55, translate: '36px -150px', rotate: '60deg', easing: 'ease-in' },
           { offset: 0.72, translate: '0px 0px', rotate: '0deg', scale: '1.06 0.94', easing: 'ease-out' },
           { offset: 0.75, scale: '1 1' },
           { offset: 0.85, translate: '0px -48px', easing: 'ease-in' },
@@ -446,9 +435,7 @@
         ]
       });
     }
-
-    // Footer: the chai line writes itself out left-to-right
-    addWipe('.footer-note', 'wipe-right', 150, 1.6);
+    addWipe('.t2-chai', 'wipe-right', 300, 1.6);
 
     // Start observing only after the hidden state has painted once, so on-load
     // entrances actually transition. Elements already above the viewport
