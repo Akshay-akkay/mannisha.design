@@ -254,6 +254,206 @@
     })();
   })();
 
+  // Ambient entry animations, choreographed per section from each element's
+  // final position and its relation to the other elements around it.
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      }
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    // Tossed items (cart section) fly on WAAPI arcs instead of CSS transitions
+    const tossQueue = [];
+    const io2 = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        if (!en.isIntersecting) continue;
+        io2.unobserve(en.target);
+        const t = tossQueue.find((q) => q.el === en.target);
+        const anim = en.target.animate(t.frames, { duration: t.duration || 680, delay: t.delay, easing: 'linear', fill: 'both' });
+        anim.finished.then(() => { en.target.style.opacity = ''; if (t.onLand) t.onLand(); }).catch(() => {});
+      }
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    const pr = document.querySelector('.page').getBoundingClientRect();
+    const s = pr.width / 1440;
+
+    // clip-path-hidden elements report zero visible area to IntersectionObserver,
+    // so wipe reveals observe an invisible same-geometry sentinel instead
+    const wipeQueue = [];
+    const io3 = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        if (!en.isIntersecting) continue;
+        io3.unobserve(en.target);
+        wipeQueue.find((q) => q.sent === en.target).el.classList.add('in');
+      }
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    const addWipe = (sel, dir, delay, dur) => {
+      const el = document.querySelector(sel);
+      el.classList.add('rv-wipe', dir);
+      el.style.transitionDelay = delay + 'ms';
+      if (dur) el.style.transitionDuration = dur + 's';
+      const r = el.getBoundingClientRect();
+      const sent = document.createElement('div');
+      sent.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;'
+        + `left:${((r.left - pr.left) / s).toFixed(1)}px;top:${((r.top - pr.top) / s).toFixed(1)}px;`
+        + `width:${(r.width / s).toFixed(1)}px;height:${(r.height / s).toFixed(1)}px;`;
+      document.querySelector('.page').appendChild(sent);
+      wipeQueue.push({ sent, el });
+    };
+    const pos = (el) => {
+      const r = el.getBoundingClientRect();
+      return { cx: ((r.left + r.right) / 2 - pr.left) / s, cy: ((r.top + r.bottom) / 2 - pr.top) / s };
+    };
+    const apply = (el, o) => {
+      el.classList.add('rv');
+      if (o.dx) el.style.setProperty('--rvx', o.dx.toFixed(1) + 'px');
+      if (o.dy !== undefined) el.style.setProperty('--rvy', o.dy.toFixed(1) + 'px');
+      if (o.rot) el.style.setProperty('--rvr', o.rot.toFixed(1) + 'deg');
+      if (o.scale) el.style.setProperty('--rvs', o.scale);
+      if (o.dur) el.style.setProperty('--rvd', o.dur + 's');
+      el.style.transitionDelay = Math.round(o.delay || 0) + 'ms';
+      queue.push(el);
+    };
+    const queue = [];
+    const each = (sel, fn) => document.querySelectorAll(sel).forEach((el, i) => apply(el, fn(el, i, pos(el)) || {}));
+
+    // Hero: nav drops in, name/tagline rise, then the collage fans out from the framed portrait
+    each('.top-nav', () => ({ dy: -26, dur: 0.7 }));
+    each('.hero-name', () => ({ dy: 22, delay: 140 }));
+    each('.hero-tagline', () => ({ dx: -60, dy: 0, delay: 280 }));
+    const HERO_C = { x: 719.5, y: 916.5 }; // portrait center
+    each('.hero-portrait', () => ({ dy: 26, scale: 0.85, delay: 380 }));
+    each('.hero-photo-1,.hero-photo-2-wrap,.hero-photo-3-wrap,.hero-photo-4,.hero-photo-5-wrap,.hero-photo-6,.hero-photo-7-wrap', (el, i, p) => {
+      const fx = p.cx - HERO_C.x, fy = p.cy - HERO_C.y;
+      return { dx: -fx * 0.25, dy: -fy * 0.25 - 8, scale: 0.82, rot: fx < 0 ? -7 : 7, delay: 480 + Math.hypot(fx, fy) * 0.55 };
+    });
+
+    // About: heading slides in from the left; the corner brackets zoom out from the
+    // center of the text block to their corners, opening the frame to reveal the text
+    each('.about-heading', () => ({ dx: -70, dy: 0 }));
+    each('.about-text p', (el, i) => ({ dy: 0, delay: 500 + i * 120, dur: 0.9 }));
+    each('.corner-tr', () => ({ dx: -255.8, dy: 133.5, delay: 180, dur: 0.75 }));
+    each('.corner-bl', () => ({ dx: 255.7, dy: -133.5, delay: 180, dur: 0.75 }));
+
+    // Projects: heading rises, card rises, tabs slide up from behind the card, stickers spin in
+    each('.projects-script', () => ({ dy: -20 }));
+    each('.projects-title', () => ({ dy: 36, delay: 140 }));
+    each('.project-card', () => ({ dy: 60, delay: 220 }));
+    each('.project-tabs', () => ({ dy: 46, delay: 480 }));
+    each('.tab1-doodle,.tab1-num', (el, i) => ({ dy: 14, scale: 0.6, delay: 700 + i * 90 }));
+    each('.projects-flower-wrap', () => ({ rot: -30, scale: 0.7, dy: 0, delay: 420 }));
+
+    // Monthly recap: heading rises, polaroids fly out from behind it to their spots,
+    // then the cursor drags the selection box across "recap" (growing from its
+    // top-left corner) while the handles tick in, starting 20% into the drag
+    each('.recap-side-quests', () => ({ dy: 24 }));
+    each('.recap-monthly', () => ({ dy: 34, delay: 100 }));
+    each('.recap-recap', () => ({ dy: 34, delay: 200 }));
+    const RECAP_C = { x: 720, y: 3460 }; // center of "monthly recap"
+    each('.recap-photo-1,.recap-caption-1,.recap-col,.recap-photo-4-wrap', (el, i, p) => ({
+      dx: RECAP_C.x - p.cx, dy: RECAP_C.y - p.cy, scale: 0.35, delay: 350 + i * 110, dur: 0.9
+    }));
+    const DRAG_AT = 1150, DRAG_MS = 735; // drag starts after the photos have flown out
+    each('.selection-box', () => ({ dy: 0, scale: 0.02, delay: DRAG_AT }));
+    each('.cursor-icon', () => ({ dy: 0 })); // path + timing live in the cursor-drag keyframes
+    each('.handle', (el, i) => ({ dy: 0, scale: 0.3, delay: DRAG_AT + DRAG_MS * 0.2 + i * 45, dur: 0.35 }));
+
+    // Life in a cart: items are tossed in along arcs from their nearer side,
+    // spinning as they fly; the basket shakes a little each time one lands
+    each('.cart-main', () => ({ dy: 50, scale: 0.94 }));
+    each('.cart-title', () => ({ dx: 60, dy: 0, delay: 400 }));
+    {
+      const items = [...document.querySelectorAll('.cart-collage > img:not(.cart-main), .cart-collage > .rot-wrap')];
+      const byDepth = [...items].sort((a, b) => pos(b).cy - pos(a).cy); // bottom of the cart fills first
+      for (const el of items) {
+        const p = pos(el);
+        const side = p.cx < 720 ? -1 : 1;
+        const dx = side * (220 + Math.random() * 120);
+        const rise = 140 + Math.random() * 80;    // arc apex above the landing spot
+        const rot = -side * (14 + Math.random() * 10);
+        const frames = [];
+        for (let k = 0; k <= 16; k++) {
+          const s = k / 16;
+          frames.push({
+            offset: s,
+            opacity: Math.min(1, s / 0.12),
+            translate: `${(dx * (1 - s)).toFixed(1)}px ${(-(60 * (1 - s) + rise * Math.sin(Math.PI * s))).toFixed(1)}px`,
+            rotate: `${(rot * (1 - s)).toFixed(1)}deg`,
+            scale: (0.9 + 0.1 * s).toFixed(3)
+          });
+        }
+        el.style.opacity = '0';
+        tossQueue.push({
+          el, frames, delay: 150 + byDepth.indexOf(el) * 130,
+          onLand: () => document.querySelector('.cart-main').animate(  // the basket takes the hit
+            [{ rotate: '0deg' }, { rotate: '-1.3deg', offset: 0.35 }, { rotate: '0.8deg', offset: 0.7 }, { rotate: '0deg' }],
+            { duration: 260, easing: 'ease-out', composite: 'add' }
+          )
+        });
+      }
+    }
+
+    // Procreate: heading rises; artworks reveal with directional brush-stroke
+    // wipes (direction matches each canvas's side of the spread); quote fades last
+    each('.procreate-heading', () => ({ dy: 30 }));
+    each('.procreate-quote', () => ({ dy: 0, delay: 900, dur: 1.2 }));
+    addWipe('.procreate-art-3-wrap', 'wipe-down', 150);
+    addWipe('.procreate-art-1', 'wipe-left', 350);
+    addWipe('.procreate-art-4', 'wipe-right', 550);
+    addWipe('.procreate-art-2', 'wipe-left', 750);
+
+    // Let's talk: the heading rises from behind the sofa (the scene paints over it,
+    // clipping it while it emerges); the LinkedIn doodle bounces in like a basketball
+    // and settles on the couch; pills still get tossed on, photo peeks from the right
+    each('.talk-head h2', () => ({ dy: 240, dur: 0.9 }));
+    each('.talk-sub', () => ({ dy: 18, delay: 500 }));
+    each('.talk-couch', () => ({ dy: 30, scale: 0.97, delay: 240 }));
+    each('.talk-email-wrap', () => ({ dy: -80, rot: -12, delay: 520 }));
+    each('.talk-resume-wrap', () => ({ dy: -80, rot: 10, delay: 780 }));
+    each('.talk-photo', () => ({ dx: 80, dy: 0, delay: 340 }));
+    {
+      const ball = document.querySelector('.talk-doodle-wrap');
+      ball.style.opacity = '0';
+      tossQueue.push({
+        el: ball, duration: 1400, delay: 600, frames: [
+          { offset: 0, opacity: 0, translate: '-300px -520px', rotate: '-240deg', easing: 'ease-in' },
+          { offset: 0.05, opacity: 1 },
+          { offset: 0.35, translate: '-120px 0px', rotate: '-130deg', scale: '1.08 0.9', easing: 'ease-out' },
+          { offset: 0.38, scale: '1 1' },
+          { offset: 0.55, translate: '-55px -150px', rotate: '-60deg', easing: 'ease-in' },
+          { offset: 0.72, translate: '0px 0px', rotate: '0deg', scale: '1.06 0.94', easing: 'ease-out' },
+          { offset: 0.75, scale: '1 1' },
+          { offset: 0.85, translate: '0px -48px', easing: 'ease-in' },
+          { offset: 0.95, translate: '0px 0px', scale: '1.04 0.96' },
+          { offset: 1, opacity: 1, translate: '0px 0px', rotate: '0deg', scale: '1 1' }
+        ]
+      });
+    }
+
+    // Footer: the chai line writes itself out left-to-right
+    addWipe('.footer-note', 'wipe-right', 150, 1.6);
+
+    // Start observing only after the hidden state has painted once, so on-load
+    // entrances actually transition. Elements already above the viewport
+    // (scroll restoration) reveal instantly instead of animating late.
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      for (const el of queue) {
+        if (el.getBoundingClientRect().bottom < 0) el.classList.add('in');
+        else io.observe(el);
+      }
+      for (const t of tossQueue) {
+        if (t.el.getBoundingClientRect().bottom < 0) t.el.style.opacity = '';
+        else io2.observe(t.el);
+      }
+      for (const w of wipeQueue) {
+        if (w.sent.getBoundingClientRect().bottom < 0) w.el.classList.add('in');
+        else io3.observe(w.sent);
+      }
+    }));
+  })();
+
   // Nav links scroll to their sections (positions on the 1440px canvas, times current scale)
   const SECTION_Y = { top: 0, about: 959, work: 1694, contact: 6910 };
   document.querySelectorAll('[data-scroll-to]').forEach((el) => {
