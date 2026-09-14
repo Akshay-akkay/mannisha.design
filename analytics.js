@@ -3,7 +3,7 @@
    GA4 gives visitors, countries/cities, devices, referrers, time on page and
    every custom event tracked here. Clarity adds heatmaps + session recordings. */
 (function () {
-  const GA_ID = '';        // e.g. 'G-XXXXXXXXXX'  (GA4 > Admin > Data streams > Measurement ID)
+  const GA_ID = 'G-NZ9EE6GHM5';        // e.g. 'G-XXXXXXXXXX'  (GA4 > Admin > Data streams > Measurement ID)
   const CLARITY_ID = '';   // e.g. 'abcdefghij'   (clarity.microsoft.com > project > Settings)
 
   const page = document.body.dataset.page || location.pathname.replace(/^\//, '').replace(/\.html$/, '') || 'home';
