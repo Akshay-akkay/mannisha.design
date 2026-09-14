@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Homemade+Apple&family=Poppins&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260914b">
+<link rel="stylesheet" href="styles.css?v=20260914c">
 </head>
 <body>
 <div class="stage">
@@ -102,6 +102,7 @@
   <button class="pj-dock-hot" type="button" style="left:602px" data-slide="0" aria-label="Show Flebo" data-cursor="cta" data-cursor-label="flebo"></button>
   <button class="pj-dock-hot" type="button" style="left:679px" data-slide="1" aria-label="Show Menteiz Aviation" data-cursor="cta" data-cursor-label="menteiz"></button>
   <button class="pj-dock-hot" type="button" style="left:759px" data-slide="2" aria-label="Show Kargo360" data-cursor="cta" data-cursor-label="kargo360"></button>
+  <span class="pj-dock-dot" aria-hidden="true"></span>
   <img class="pj-dog" src="assets/projects-dog.png" alt="">
 
   <!-- ===== Hero name + nav (painted above collage) ===== -->
@@ -476,13 +477,18 @@
     const slides = [...win.querySelectorAll('.pj-slide')];
     const dots = [...win.querySelectorAll('.pj-dots span')];
     const url = win.querySelector('.pj-url');
+    const hots = [...document.querySelectorAll('.pj-dock-hot')];
+    const dockDot = document.querySelector('.pj-dock-dot');
     let i = 0;
     const go = (n) => {
       i = (n + slides.length) % slides.length;
       slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
       dots.forEach((d, k) => d.classList.toggle('on', k === i));
       url.innerHTML = slides[i].dataset.url;
+      const h = hots.find((b) => +b.dataset.slide === i);   // running-app dot under the active icon
+      if (h) dockDot.style.left = (h.offsetLeft + h.offsetWidth / 2 - 3) + 'px';
     };
+    go(0);
     win.querySelector('.pj-prev').addEventListener('click', () => go(i - 1));
     win.querySelector('.pj-next').addEventListener('click', () => go(i + 1));
     document.querySelectorAll('[data-slide]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.slide)));
