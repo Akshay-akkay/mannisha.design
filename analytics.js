@@ -1,15 +1,13 @@
 /* Site analytics (Google Analytics 4, optional Microsoft Clarity).
-   Fill in the IDs below; with both empty nothing loads and nothing is sent.
-   GA4 gives visitors, countries/cities, devices, referrers, time on page and
-   every custom event tracked here. Clarity adds heatmaps + session recordings. */
+   Every event below is a specific action: which button, which project, which
+   case study. GA4's own page_view stays on because it is what counts visitors,
+   countries, devices and page visits in the standard reports. */
 (function () {
-  const GA_ID = 'G-NZ9EE6GHM5';        // e.g. 'G-XXXXXXXXXX'  (GA4 > Admin > Data streams > Measurement ID)
-  const CLARITY_ID = '';   // e.g. 'abcdefghij'   (clarity.microsoft.com > project > Settings)
+  const GA_ID = 'G-NZ9EE6GHM5';   // GA4 Measurement ID
+  const CLARITY_ID = '';          // optional: clarity.microsoft.com project id
 
-  const page = document.body.dataset.page || location.pathname.replace(/^\//, '').replace(/\.html$/, '') || 'home';
-  const caseStudy = document.body.dataset.case || null;
+  const page = document.body.dataset.page || 'home';   // home | flebo | menteiz | kargo360
 
-  // ---- loaders ----------------------------------------------------------
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   if (GA_ID) {
@@ -17,7 +15,7 @@
     s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
     gtag('js', new Date());
-    gtag('config', GA_ID, { page_title: document.title, send_page_view: true });
+    gtag('config', GA_ID, { page_title: document.title });
   }
   if (CLARITY_ID) {
     (function (c, l, a, r, i, t, y) {
@@ -28,74 +26,40 @@
   }
 
   const track = (name, params) => {
-    const p = Object.assign({ page, ...(caseStudy && { case_study: caseStudy }) }, params || {});
+    const p = Object.assign({ page }, params || {});
     if (GA_ID) gtag('event', name, p);
     if (CLARITY_ID && window.clarity) window.clarity('event', name);
-    if (!GA_ID && !CLARITY_ID && location.hostname === 'localhost') console.debug('[analytics]', name, p);
+    if (location.hostname === 'localhost') console.debug('[analytics]', name, p);
   };
-  window.mkTrack = track;
 
-  // ---- case study visits -----------------------------------------------
-  if (caseStudy) track('case_study_view', { case_study: caseStudy });
+  // Case study visits: flebo_case_study_visit, menteiz_case_study_visit, kargo360_case_study_visit
+  if (page !== 'home') track(page + '_case_study_visit');
 
-  // ---- CTA + link clicks -------------------------------------------------
-  const label = (el) => (el.dataset.track || el.getAttribute('aria-label') || el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80);
+  // Which project a link points at: flebo.html -> flebo, menteiz.html -> menteiz, kargo360.html -> kargo360
+  const projectOf = (href) => ((href || '').match(/(flebo|menteiz|kargo360)\.html/) || [])[1];
+
   document.addEventListener('click', (e) => {
     const t = e.target instanceof Element ? e.target : null;
-    if (!t) return;
-    const a = t.closest('a, button');
+    const a = t && t.closest('a, button');
     if (!a) return;
     const href = a.getAttribute('href') || '';
-    const l = label(a);
-    if (a.matches('.nav-cta, .t2-pill, .t2-linkedin, .nav-links a, .nav-logo, .back, .next-link, .foot-row a')) {
-      track('cta_click', { cta: l, href, location: a.closest('nav, footer, section, .pj-window') ? a.closest('nav, footer, section, .pj-window').className.split(' ')[0] : 'body' });
-    }
-    if (a.matches('.pj-slide')) track('project_open', { project: a.querySelector('h3') ? a.querySelector('h3').textContent.trim() : l, href });
-    if (a.matches('.pj-dock-hot')) track('dock_click', { project: l });
-    if (a.matches('.pj-prev, .pj-next')) track('project_arrow', { direction: a.classList.contains('pj-next') ? 'next' : 'prev' });
-    if (/^mailto:/.test(href)) track('email_click', { href });
-    else if (/\.pdf($|\?)/.test(href)) track('resume_download', { href });
-    else if (/^https?:\/\//.test(href) && !href.includes(location.hostname)) track('outbound_click', { href, cta: l });
+    const proj = projectOf(href);
+
+    // Home: nav + contact CTAs
+    if (a.matches('.nav-cta')) return track('lets_chat_click');
+    if (a.matches('.nav-links a')) return track('nav_' + (a.dataset.scrollTo || 'link') + '_click');
+    if (a.matches('.t2-resume')) return track('resume_click');
+    if (a.matches('.t2-email')) return track('email_click');
+    if (a.matches('.t2-linkedin')) return track('linkedin_click');
+
+    // Projects window: dock icons, arrows, opening a case study
+    if (a.matches('.pj-dock-hot')) return track(['flebo', 'menteiz', 'kargo360'][+a.dataset.slide] + '_dock_click');
+    if (a.matches('.pj-prev')) return track('project_prev_arrow_click');
+    if (a.matches('.pj-next')) return track('project_next_arrow_click');
+    if (a.matches('.pj-slide') && proj) return track(proj + '_case_study_click');
+
+    // Case study pages
+    if (a.matches('.back') || a.matches('.foot-row a')) return track('back_to_desk_click');
+    if (a.matches('.next-link') && proj) return track(proj + '_next_up_click');
   }, true);
-
-  // ---- projects window: which case study is on screen -------------------
-  const win = document.getElementById('pj-window');
-  if (win) {
-    const slides = [...win.querySelectorAll('.pj-slide')];
-    const mo = new MutationObserver(() => {
-      const on = slides.find((s) => s.classList.contains('is-active'));
-      if (on) track('project_view', { project: on.querySelector('h3').textContent.trim() });
-    });
-    slides.forEach((s) => mo.observe(s, { attributes: true, attributeFilter: ['class'] }));
-  }
-
-  // ---- section + scroll depth -------------------------------------------
-  const sections = [
-    ['hero', '.hero-name'], ['about', '.about'], ['work', '.projects-heading'], ['monthly_recap', '.recap-monthly'],
-    ['life_in_a_cart', '.cart-title'], ['procreate', '.procreate-heading'], ['lets_talk', '.t2-head']
-  ].map(([n, sel]) => [n, document.querySelector(sel)]).filter(([, el]) => el);
-  if (sections.length && 'IntersectionObserver' in window) {
-    const seen = new Set();
-    const io = new IntersectionObserver((es) => {
-      for (const en of es) {
-        if (!en.isIntersecting) continue;
-        const name = sections.find(([, el]) => el === en.target)[0];
-        if (seen.has(name)) continue;
-        seen.add(name); track('section_view', { section: name }); io.unobserve(en.target);
-      }
-    }, { threshold: 0.2 });
-    sections.forEach(([, el]) => io.observe(el));
-  }
-  const marks = [25, 50, 75, 100]; const hit = new Set();
-  const depth = () => {
-    const h = document.documentElement.scrollHeight - innerHeight;
-    if (h <= 0) return;
-    const pct = Math.round(((scrollY) / h) * 100);
-    for (const m of marks) if (pct >= m && !hit.has(m)) { hit.add(m); track('scroll_depth', { percent: m }); }
-  };
-  addEventListener('scroll', depth, { passive: true }); depth();
-
-  // ---- time on page (sent when leaving) ---------------------------------
-  const t0 = performance.now();
-  addEventListener('pagehide', () => track('page_leave', { seconds: Math.round((performance.now() - t0) / 1000), max_scroll: Math.max(0, ...hit) }));
 })();
