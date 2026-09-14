@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Re-design Kargo360 App — Case Study — Manisha Koranga</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="case.css">
+</head>
+<body class="cs kargo">
+<div class="cs-page">
+  <div class="wrap">
+
+    <header class="cs-header">
+      <a class="back" href="./">&larr;&nbsp; back to the desk</a>
+      <div class="palette">
+        <div class="swatches">
+          <span style="background:#172a4d"></span><span style="background:#0b1c3a"></span>
+          <span style="background:#e01b22"></span><span style="background:#f5f5f2"></span>
+        </div>
+        <p>COLOUR<br>PALETTE</p>
+      </div>
+    </header>
+
+    <div class="chips">
+      <span class="chip active">Kargo 360 App</span>
+      <span class="chip">A2A &amp; D2D</span>
+      <span class="chip">UX</span>
+      <span class="chip">Redesign</span>
+      <span class="chip">Air Cargo Ops</span>
+    </div>
+
+    <h1>Making Complex Air-Cargo Operations Visible, Predictable, And Easier To&nbsp;Execute.</h1>
+    <p class="sub">Kargo360 is a two-sided operational product: A2A for airside flight and manifest operations, and D2D for pickups, trucking and delivery. The redesign focused on the hidden workflow underneath the UI &mdash; and on making that workflow legible to the people operating it.</p>
+
+    <div class="stats">
+      <div class="stat"><p class="v blue">245</p><p class="c">screen captures audited</p></div>
+      <div class="stat"><p class="v teal">2</p><p class="c">apps redesigned</p></div>
+      <div class="stat"><p class="v orange">8</p><p class="c">workflow rules uncovered</p></div>
+    </div>
+
+    <div class="meta">
+      <div><p class="k">role</p><p class="d">UX research, IA, interaction &amp; UI design</p></div>
+      <div><p class="k">scope</p><p class="d">2 mobile apps &mdash; A2A &amp; D2D</p></div>
+      <div><p class="k">method</p><p class="d">Heuristic audit, task analysis, IA rebuild</p></div>
+      <div><p class="k">tools</p><p class="d">Figma, ChatGPT</p></div>
+    </div>
+  </div>
+
+  <img class="full" src="assets/kargo/hero.jpg" alt="Hand holding a phone with the redesigned Kargo360 home screen against an airport cargo apron at dusk">
+
+  <div class="wrap">
+    <h2 class="hl">Brief</h2>
+    <p>Air cargo moves through a chain of custody, and at every handover somebody has to tell a system what just physically happened. A ULD arrives. It gets broken down. Pieces get assigned to a cart, a cart to a flight, a flight to a manifest. On the road, a pickup is assigned, collected, consolidated into a motherbag, trucked, and delivered.</p>
+    <p>Kargo's two apps cover both halves of that chain &mdash; A2A airside and D2D on the road &mdash; and the same company's staff move between them.</p>
+    <blockquote>The brief was not simply to modernise the interface. It was to make the product usable by people wearing gloves, standing up, in a hurry, without relying on training to explain what the system was doing.</blockquote>
+    <div class="stats divided" style="margin-top:40px;gap:70px">
+      <div class="stat"><p class="v" style="color:#1c1c1c;font-size:32px">119</p><p class="c">field captures</p></div>
+      <div class="stat"><p class="v" style="color:#1c1c1c;font-size:32px">126</p><p class="c">engineering screens</p></div>
+      <div class="stat"><p class="v" style="color:#1c1c1c;font-size:32px">40+</p><p class="c">fields on the worst screen</p></div>
+    </div>
+    <h4>So the design question</h4>
+    <blockquote>How might we make the workflow visible, so the app stops teaching by punishment?</blockquote>
+    <div class="note-dark" style="max-width:none"><p class="kicker" style="margin:0;color:#f2c200">The core insight</p><p style="margin-top:8px;font-size:17px;color:#fff;max-width:none">The software already knew the workflow. It just never told anybody.</p></div>
+
+    <h2 class="hl">The Audit</h2>
+    <p>I worked from two independent inventories: 119 captures taken in the field and the engineering team's own 126-screen build deck. Together they covered both apps end to end &mdash; crucially including error and success states, where the real evidence turned out to be.</p>
+    <p>I ran a heuristic evaluation and grouped findings by severity. The same issues repeated across otherwise different modules, which suggested a systemic problem rather than isolated UI defects.</p>
+    <div class="audit">
+      <p class="kicker sev-c" style="border-color:#c62828">Critical Severity Issues</p>
+      <div class="arow"><b>Visibility of system status</b><span>The app did not show where a shipment or ULD was in its lifecycle. States such as arrived, broken, assigned and manifested only became visible when an action failed.</span></div>
+      <div class="arow"><b>Error prevention</b><span>Invalid actions were enabled and rejected afterwards. Eight distinct sequencing rules surfaced only as red toasts.</span></div>
+      <div class="arow"><b>Match with the real world</b><span>Screens were named after database operations such as <strong>Break ULD</strong>, <strong>Re-Assign</strong> and <strong>Export Manifest</strong>. Fields used internal labels such as POL, POU, Flt stat and Rem Cat.</span></div>
+      <div class="arow"><b>Recognition over recall</b><span>Airport codes appeared bare, related weight fields were not differentiated, and controlled codes were often typed from memory.</span></div>
+      <p class="kicker sev-s">Serious Severity Issues</p>
+      <div class="arow"><b>Aesthetic &amp; minimalist design</b><span>Booking, HAWB and DGR were long scrolling forms with similarly weighted inputs and little grouping or prioritisation.</span></div>
+      <div class="arow"><b>Help users recover from errors</b><span>Validation could turn multiple fields red at once with generic <em>Required</em> messaging, while feedback toasts could cover the active area.</span></div>
+      <div class="arow"><b>User control &amp; freedom</b><span>Destructive actions were buried in text-only menus and confirmed with generic Yes / Cancel language that hid consequences.</span></div>
+    </div>
+    <img class="fig" src="assets/kargo/evidence.jpg" alt="Four legacy screens: booking with eight errors, dangerous goods form, hidden delete menu, feedback bar covering the action button">
+    <div class="cap-row c4" style="margin-top:-30px">
+      <div class="cap"><h6>Eight errors at once</h6><p>Destination, Consignee, Customer, Customer Name, Commodity, SHC, Pieces, Gross Wt &mdash; all red, all "Required*".</p></div>
+      <div class="cap"><h6>Dangerous goods</h6><p>Eleven fields &mdash; UNID, SHC, Class, ERG Code, Sub Risk, Rem Cat &mdash; with no explanation of any of them.</p></div>
+      <div class="cap"><h6>Delete, hidden</h6><p>The destructive action lives in a three-item text menu with no icon, colour or separation.</p></div>
+      <div class="cap"><h6>Feedback in the way</h6><p>The success bar lands on top of the floating action button you just used.</p></div>
+    </div>
+
+    <h2 class="hl">The Root Cause</h2>
+    <p><strong>The error messages were the specification.</strong> Auditing the failure states is where the project turned. The errors were not random. <strong>Each one encoded a business rule the software already knew, revealed only after the user broke it.</strong></p>
+    <div class="errs">
+      <div class="err"><span class="pill">Please arrive first.</span><p>The app knows the ULD has not arrived. <strong>Surface that state on the card</strong> and make Arrive the obvious next step.</p></div>
+      <div class="err"><span class="pill">Cannot Unarrive Broken Uld</span><p>A broken ULD cannot move backward in the lifecycle. That rule should <strong>disable the control and explain why</strong>.</p></div>
+      <div class="err"><span class="pill">ULD(s) already arrived.</span><p>The desired outcome has already happened. What looks like an error is actually <strong>missing status</strong>.</p></div>
+      <div class="err"><span class="pill">Flight must first be manifested</span><p>The system already has a sequence: build &rarr; manifest &rarr; depart. <strong>The interface simply never draws it.</strong></p></div>
+      <div class="err"><span class="pill">Please select VIA ULD(s) only.</span><p>The system knows which rows are legal. <strong>Filter them</strong>, or make the others visibly unavailable.</p></div>
+      <div class="err"><span class="pill">Select Bulk AWB for Offload</span><p>The action needs a prerequisite. <strong>Keep the primary action disabled</strong> until the missing requirement is satisfied.</p></div>
+    </div>
+    <h4>what those six rules add up to</h4>
+    <blockquote>Read together, the errors describe a complete state machine. The software enforced it perfectly; the interface rendered it nowhere.</blockquote>
+    <div class="chain"><span>arrive</span><i>&rarr;</i><span>break</span><i>&rarr;</i><span>assign</span><i>&rarr;</i><span>cart</span><i>&rarr;</i><span>manifest</span><i>&rarr;</i><span>depart</span></div>
+    <div class="callout"><p class="kicker">The reframe</p><p style="font-size:20px;font-weight:700">I stopped designing screens and started drawing the process the system already runs. That is why the redesign begins with information architecture, not UI.</p></div>
+
+    <h2 class="hl">Who&rsquo;s holding the Phone</h2>
+    <p>Nobody is sitting down. Both apps are used in the field, and the field is hostile to the interface patterns the old product relied on: tiny two-column inputs, text-only menus and transient toasts. I designed around three recurring operator contexts.</p>
+    <div class="ops">
+      <div class="op"><p class="who"><i>R</i><span>Ramp agent<small>A2A &middot; airside</small></span></p><p class="quote hand">"i just need to know if this ULD is ready to break."</p><ul><li>Gloves on; phone in one hand; engine noise</li><li>Sunlight on the screen</li><li>Blocked by rules the UI never showed</li></ul><p class="need"><b>NEED</b>Status at a glance, and only the actions that are legal right now.</p></div>
+      <div class="op"><p class="who"><i style="background:#1c1c1c">D</i><span>Pickup driver<small>D2D &middot; on the road</small></span></p><p class="quote hand">"accept or reject &mdash; and if i reject, why?"</p><ul><li>Needs the customer address first</li><li>Jobs arrive one at a time</li><li>Rejection reasoning matters to operations</li></ul><p class="need"><b>NEED</b>One decision-ready card, batch actions, structured reasons.</p></div>
+      <div class="op"><p class="who"><i style="background:#172a4d">B</i><span>Booking desk<small>A2A / D2D</small></span></p><p class="quote hand">"i know the shipper. i don't know the ERG code."</p><ul><li>Multiple sources of information</li><li>High call volume</li><li>Controlled codes typed from memory</li></ul><p class="need"><b>NEED</b>Enter what is known now, and look the rest up.</p></div>
+    </div>
+    <h4>Environment is the requirement</h4>
+    <blockquote>A two-column input is a desk pattern. On an apron in daylight with gloves on, the usable unit is a card you can read at arm's length and a button you can hit without looking.</blockquote>
+
+    <h2 class="hl">What I decided</h2>
+    <p>Four rules, applied to both apps.</p>
+    <div class="rules-list">
+      <div><h5>name screens after the job, not the table.</h5><p><em>Break ULD, Re-Assign</em> and <em>Export Manifest</em> describe system operations. D2D's journey-based vocabulary showed that the company could already speak in user tasks &mdash; so the problem was solvable in-house, not inherent to freight.</p></div>
+      <div><h5>make the state machine visible.</h5><p>Status moves onto the object: shipment cards carry a state chip and an ETA, ULD rows carry their lifecycle stage, and actions that are not legal yet are disabled rather than allowed-then-refused. The eight error messages become eight pieces of interface.</p></div>
+      <div><h5>split the wall into rooms.</h5><p>Booking sub-entities become focused sheets layered over the booking, so users keep context. The form is split into <em>find the shipment</em> and <em>describe the shipment</em>.</p></div>
+      <div><h5>never make users translate.</h5><p>Airport codes carry city names underneath. Navigation labels stay visible. Code fields become searchable pickers instead of memory tests.</p></div>
+    </div>
+  </div>
+
+  <img class="full" src="assets/kargo/a2aflow.jpg" alt="A2A, the flow end to end: schedule search, named routes, structured re-assignment, cart and ULD building, confirmation, finalisation">
+
+  <div class="wrap">
+    <h2 class="hl">Rebuilding A2A</h2>
+    <p>A2A is the harder of the two because the domain genuinely is complex: a cart holds pieces, a ULD holds carts, a flight holds ULDs, and a manifest describes the flight. The old interface flattened those relationships into repeated input rows.</p>
+    <p>The redesign gives each operational object a clear identity, data hierarchy, state, and set of legal actions.</p>
+    <h4>the object model, drawn once</h4>
+    <blockquote>This is the diagram the old app never showed. Containment runs outside-in, and every level carries its own state &mdash; which is exactly what the error messages were policing.</blockquote>
+    <div class="objects">
+      <div class="obj"><b>Flight</b><span>a scheduled departure, DL1 &rarr; BO2</span><div class="chips-status"><span class="st-yellow">planned</span><span class="st-green">manifested</span><span class="st-teal">departed</span></div></div>
+      <div class="obj"><b>ULD</b><span>the container loaded onto the aircraft</span><div class="chips-status"><span class="st-yellow">in transit</span><span class="st-green">arrived</span><span class="st-red">broken</span></div></div>
+      <div class="obj"><b>Cart</b><span>a build unit inside the ULD</span><div class="chips-status"><span class="st-yellow">empty</span><span class="st-green">built</span></div></div>
+      <div class="obj"><b>AWB &amp; pieces</b><span>the shipment itself &mdash; 775-60230715</span><div class="chips-status"><span class="st-yellow">unassigned</span><span class="st-green">assigned</span><span class="st-purple">offloaded</span></div></div>
+    </div>
+    <p>Manifest sits alongside rather than inside: it describes a flight's contents at a point in time, which is why "flight must first be manifested" was a sequencing rule and not a property of any one object.</p>
+
+    <h2 class="hl">Patterns that Scale</h2>
+    <p>Break ULD is a useful example because the underlying data did not change. The redesign focused on legibility, grouping and interaction quality on a screen that could be used on an apron.</p>
+    <div class="notes">
+      <div><h5>Labels above the field</h5><p>The same values are presented as a proper form: label, then input, at a size that can be hit confidently.</p></div>
+      <div><h5>Selection is an explicit action</h5><p>The checkbox becomes a real touch target, because selection is the first thing the user needs to do.</p></div>
+      <div><h5>Actions leave the overlap zone</h5><p>Menus open as focused sheets rather than fragments squeezed out from underneath a floating action button.</p></div>
+      <div><h5>Destructive action names the consequence</h5><p>Instead of Yes, the destructive button says what it does. The confirmation explains what happens to the associated AWBs.</p></div>
+      <div><h5>Feedback gets out of the way</h5><p>Success and error states take over the screen or use non-blocking placement, instead of covering the field or action the user needs next.</p></div>
+    </div>
+    <h3 class="green">break uld, before and after</h3>
+    <div class="pair-labels" style="margin-top:20px"><span>before</span><span style="color:#2e7d32">after</span></div>
+    <img class="fig" src="assets/kargo/breakuld.jpg" alt="Break ULD screen before and after the redesign" style="margin-top:14px">
+    <div class="cap-row c2" style="margin-top:-30px">
+      <div class="cap"><h6>Labels inside the border</h6><p>Every label is a 10px notch cut into the outline of its own box, and the only action, "Save", escapes from behind the FAB and lands half on top of the navigation.</p></div>
+      <div class="cap"><h6>Labels above the field</h6><p>The same values, set as a proper form. The card groups what belongs to one AWB; nothing floats over anything; the checkbox is a real target.</p></div>
+    </div>
+    <h3>and the dialog that appeared everywhere</h3>
+    <div class="side-fig">
+      <img class="fig" src="assets/kargo/dialog.jpg" alt="Legacy delete confirmation: Are you sure you want to delete this Uld? Cancel / Yes">
+      <div class="annots">
+        <div><h6>What it said</h6><p>"Are you sure you want to delete this Uld?" &mdash; a default OS alert, with the destructive choice rendered as the plain word Yes, at exactly the same visual weight as Cancel.</p></div>
+        <div><h6>What it didn't say</h6><p>A ULD contains AWBs. Deleting it unassigns all of them &mdash; the consequence the person actually needs to weigh. The dialog never mentions them.</p></div>
+        <div><h6>What replaced it</h6><p>The verb replaces "Yes", so the button says what it does. The safe option is outlined, the destructive one filled &mdash; equal size, unequal weight. And the outcome takes the whole screen with one way onward.</p></div>
+      </div>
+    </div>
+
+    <h2 class="hl">Rebuilding D2D</h2>
+    <p>D2D was where <strong>restraint mattered more than invention</strong>. Its information architecture was already correct: Booking, Firstmile, Trucking, Motherbag and Lastmile. Re-architecting it would have destroyed useful muscle memory.</p>
+    <p>So I kept the structure and changed what the structure could communicate: priority, state, movement and next action.</p>
+    <div class="pair-labels"><span>before</span><span style="color:#2e7d32">after</span></div>
+    <img class="fig" src="assets/kargo/d2dhome.jpg" alt="D2D home before, five identical tiles on a gradient, and after, illustrated cards with active shipments" style="margin-top:14px;width:70%;margin-left:auto;margin-right:auto">
+    <div class="cap-row c2" style="margin-top:-30px">
+      <div class="cap"><h6>The right five things</h6><p>on a magenta-to-orange gradient, as five identical tiles, with no status, no priority and no way to tell what's urgent.</p></div>
+      <div class="cap"><h6>The same five things, able to speak</h6><p>Illustrated cards you can distinguish at a glance, then the two things the old home never showed: what's moving now, and what just happened.</p></div>
+    </div>
+  </div>
+
+  <img class="full" src="assets/kargo/homeannot.jpg" alt="Redesigned D2D home screen with four annotations: one primary action, journey modules, active shipments, a persistent activity feed">
+
+  <div class="wrap">
+    <div class="cap-row c4" style="margin-top:32px">
+      <div class="cap"><h6>1. One primary action</h6><p>"What would you like to book today?" and a single Book Now. The old home opened on an unlabelled tile grid with no stated purpose.</p></div>
+      <div class="cap"><h6>2. Journey modules</h6><p>The inherited modules, now each with an illustration and a subtitle in the driver's language. Same IA &mdash; finally distinguishable at arm's length.</p></div>
+      <div class="cap"><h6>3. Active shipments</h6><p>A state chip, a From&rarr;To line and an estimated delivery. The single biggest answer to "visibility of system status".</p></div>
+      <div class="cap"><h6>4. A persistent activity feed</h6><p>Picked up, in transit, delayed &mdash; colour-coded and scrollable. Feedback you can go back to, instead of a bar that disappears.</p></div>
+    </div>
+
+    <h3>The pickup card</h3>
+    <div class="pair-labels" style="margin-top:20px"><span>before</span><span style="color:#2e7d32">after</span></div>
+    <img class="fig" src="assets/kargo/pickup.jpg" alt="My Pickup card before and after the redesign" style="margin-top:14px">
+    <div class="cap-row c2" style="margin-top:-30px">
+      <div class="cap"><h6>Decode it yourself</h6><p>Bare codes, uniform grey labels, an address wrapping mid-word, and a success bar parked over the next card.</p></div>
+      <div class="cap"><h6>Read it at a glance</h6><p>The route is drawn, not encoded; the address gets room to breathe; Reject and Confirm carry equal width but unequal weight.</p></div>
+    </div>
+
+    <h3>assignment and structured reasons</h3>
+    <p>Structured reasons and bulk assignment both already existed &mdash; more sound thinking buried under its own presentation. The reason picker was an inline block that appeared mid-card, pre-flagged red, before the driver had done anything.</p>
+    <img class="fig" src="assets/kargo/assign.jpg" alt="D2D Assign Pickup flow: multi-select, one assignment, a real confirmation">
+    <p>So the redesign keeps the logic and rebuilds the moment: assignment moves into a sheet with its own two decisions and nothing competing; the reason list becomes a clean radio set where remarks appear only for Other; and the outcome takes the whole screen instead of sliding over the card you were reading.</p>
+
+    <h2 class="hl">Recognition over recall</h2>
+    <p>Special Handling Codes are controlled operational vocabulary. The legacy experience gave users a text box and expected recall. The redesign makes them searchable and multi-selectable in a focused sheet.</p>
+    <div class="pair-labels"><span>before</span><span style="color:#2e7d32">after</span></div>
+    <img class="fig" src="assets/kargo/shc.jpg" alt="SHC code entry before, a typed field, and after, a searchable multi-select sheet" style="margin-top:14px">
+    <div class="cap-row c2" style="margin-top:-30px">
+      <div class="cap"><h6>A text box and a hope</h6><p>"SHC Code*" sits as a typed field among fourteen others &mdash; recalled from memory, validated only on submit.</p></div>
+      <div class="cap"><h6>Search, then select</h6><p>A searchable checklist in a sheet over the booking you're already in. Multi-select, because shipments routinely carry more than one code.</p></div>
+    </div>
+    <div class="callout green"><p class="kicker">Why this matters</p><p>This is the difference between an interface that assumes expertise and one that supplies it. In a domain where the wrong code can become a safety issue, recognition over recall is not a usability nicety.</p></div>
+
+    <h2 class="hl">The system is visible</h2>
+    <p>The whole project reduces to one change in the order of events.</p>
+    <div class="pair">
+      <div class="card" style="background:#fff0ef;border-color:#f3c9c6"><p class="kicker red">Before &mdash; reacting to mistakes</p><ol><li>Attempt action</li><li>System rejects it</li><li>User interprets error</li><li>User tries again</li></ol><p style="font-size:13px;color:#c62828">&#8635; and repeats, once per shift, for years</p></div>
+      <div class="card" style="background:#eef7ee;border-color:#c5e2c7"><p class="kicker green">After &mdash; communicating state</p><ol><li>System exposes state</li><li>Only valid actions are available</li><li>User understands the next step</li><li>Task is completed</li></ol><p style="font-size:13px;color:#2e7d32">&#10003; no interpretation required</p></div>
+    </div>
+    <div class="callout"><p class="kicker">What changed</p><p>Across both apps, the redesign shifts the interface from reacting to mistakes to communicating the operational state that makes those mistakes predictable.</p></div>
+
+    <h2 class="hl">What i&rsquo;d test next</h2>
+    <p>The redesign is grounded in a 119-screen field audit, the engineering build deck, and domain reasoning. It has not yet been validated on an apron or in a live driving context. I would keep that limitation explicit rather than claiming outcomes the project has not measured.</p>
+    <p>The next research sprint would watch four ramp agents and two drivers complete real work, then measure the moments where the redesigned state model is expected to matter most.</p>
+    <div class="metrics">
+      <div class="metric"><h6>Illegal-action attempts per shift</h6><p class="big"><small>&rarr;</small>~0</p><p>Should trend toward zero, because invalid actions are now prevented rather than repeatedly refused.</p></div>
+      <div class="metric"><h6>Break-and-assign completion time</h6><p class="big">new vs experienced</p><p>Compare new and experienced operators on a critical A2A workflow.</p></div>
+      <div class="metric"><h6>Booking abandonment</h6><p class="big"><small>&darr;</small>drop-off</p><p>Measure whether structured sub-flows reduce drop-off on the multi-entity booking task.</p></div>
+      <div class="metric"><h6>Time to first successful manifest</h6><p class="big"><small>&darr;</small>new starter</p><p>Test whether the visible sequence helps a new starter reach a complete manifest faster.</p></div>
+    </div>
+  </div>
+
+  <section class="closing">
+    <div class="wrap">
+      <p class="kicker">Closing thought</p>
+      <h2>Good enterprise UX does not remove complexity. It makes the <em>right complexity visible</em> at the right moment.</h2>
+      <p>Kargo360 gave me a useful reminder: complex operational products do not become usable by hiding the domain. They become usable when the interface exposes the domain model clearly enough that people can act without translating the system in their head.</p>
+      <div class="box"><p class="kicker">The portfolio takeaway</p><p>I did not redesign two apps screen by screen. I audited the evidence, uncovered the hidden state machine, rebuilt the information architecture around the user's work, and used the UI to make the system's existing logic visible.</p></div>
+    </div>
+  </section>
+
+  <div class="zig"></div>
+  <footer class="cs-footer">
+    <div class="wrap">
+      <div class="next">
+        <img class="folder" src="assets/flebo/folder.png" alt="">
+        <div>
+          <p class="next-label">next up - Flebo &nbsp;<span>/ back to the folder</span></p>
+          <a class="next-link" href="flebo.html">Flebo &rarr;</a>
+        </div>
+      </div>
+      <div class="foot-row">
+        <p>&copy; 2026 manisha koranga</p>
+        <a href="./">back to desk &uarr;</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    document.querySelectorAll('.hl, h3, blockquote, .fig, .full, .stats, .meta, .card, .op, .metric, .callout, .chain, .objects, .note-dark, .audit').forEach((el) => {
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
+</script>
+</body>
+</html>

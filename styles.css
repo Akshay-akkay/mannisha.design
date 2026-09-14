@@ -165,12 +165,24 @@ a { color: inherit; text-decoration: none; }
 .pj-survival img { width: 99px; height: 71px; object-fit: cover; }
 .pj-survival p { font-size: 12px; line-height: 14px; color: #2b2b2b; }
 
-.pj-window { position: absolute; left: 215px; top: 1897px; width: 1011px; height: 694.6px; display: block; }
+.pj-window { position: absolute; left: 215px; top: 1897px; width: 1011px; height: 694.6px; }
 .pj-frame { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.16)); }
-.pj-shot { position: absolute; left: 62.9px; top: 100px; width: 884.2px; height: 505px; border-radius: 8px; object-fit: cover; }
+.pj-url { position: absolute; left: 282px; top: 40px; height: 26px; line-height: 26px; font-size: 13px; color: #8f8c85; pointer-events: none; }
+.pj-slides { position: absolute; inset: 0; }
+.pj-slide { position: absolute; inset: 0; display: block; opacity: 0; pointer-events: none; transition: opacity 0.45s ease; }
+.pj-slide.is-active { opacity: 1; pointer-events: auto; }
+.pj-shot { position: absolute; left: 62.9px; top: 100px; width: 884.2px; height: 505px; border-radius: 8px; object-fit: cover; translate: 18px 0; transition: translate 0.6s cubic-bezier(0.22, 0.9, 0.3, 1); }
+.pj-slide.is-active .pj-shot { translate: 0 0; }
 .pj-meta { position: absolute; left: 71.1px; top: 618.3px; width: 866.7px; height: 32px; display: flex; align-items: flex-start; justify-content: space-between; }
-.pj-meta h3 { margin-top: 1px; font-size: 28px; line-height: 31px; font-weight: 600; color: #141414; }
-.pj-tags { display: flex; gap: 39px; margin-top: 7px; font-size: 16px; line-height: 25px; color: #1b1b1b; }
+.pj-meta h3 { margin-top: 1px; font-size: 28px; line-height: 31px; font-weight: 600; color: #141414; white-space: nowrap; }
+.pj-tags { display: flex; gap: 39px; margin-top: 7px; font-size: 16px; line-height: 25px; color: #1b1b1b; white-space: nowrap; }
+.pj-nav { position: absolute; top: 34px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; transition: background 0.2s; }
+.pj-nav:hover { background: rgba(20, 20, 20, 0.07); }
+.pj-prev { left: 172px; } .pj-next { left: 214px; }
+.pj-dots { position: absolute; left: 866px; top: 49px; display: flex; gap: 5px; }
+.pj-dots span { width: 7px; height: 7px; border-radius: 50%; background: #dcd9d3; transition: background 0.3s; }
+.pj-dots span.on { background: #141414; }
+.pj-dock-hot { position: absolute; top: 2608px; width: 60px; height: 62px; border: 0; border-radius: 14px; background: transparent; cursor: pointer; }
 
 .pj-dock { position: absolute; left: 431px; top: 2588px; width: 579px; height: 111px; }
 .pj-dog { position: absolute; left: 1226px; top: 2542px; width: 238px; height: 220px; }

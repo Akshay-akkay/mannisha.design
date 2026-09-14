@@ -68,15 +68,39 @@
     <img src="assets/projects-survival.png" alt="">
     <p>survival<span class="hand">.</span>jpg</p>
   </div>
-  <a class="pj-window" href="flebo.html" data-cursor="cta" data-cursor-label="view">
+  <div class="pj-window" id="pj-window">
     <img class="pj-frame" src="assets/projects-window.png" alt="">
-    <img class="pj-shot" src="assets/projects-macbook.png" alt="Flebo redesign shown on a MacBook">
-    <div class="pj-meta">
-      <h3>Re-design Flebo</h3>
-      <div class="pj-tags"><span>UX Designer</span><span>Figma, Claude</span><span>2026</span></div>
+    <p class="pj-url" aria-hidden="true">flebo.in</p>
+    <div class="pj-slides">
+      <a class="pj-slide is-active" href="flebo.html" data-url="flebo.in" data-cursor="cta" data-cursor-label="view">
+        <img class="pj-shot" src="assets/projects-macbook.png" alt="Flebo redesign shown on a MacBook">
+        <div class="pj-meta">
+          <h3>Re-design Flebo</h3>
+          <div class="pj-tags"><span>UX Designer</span><span>Figma, Claude</span><span>2026</span></div>
+        </div>
+      </a>
+      <a class="pj-slide" href="menteiz.html" data-url="menteizaviation.com" data-cursor="cta" data-cursor-label="view">
+        <img class="pj-shot" src="assets/projects-menteiz.jpg" alt="Menteiz Aviation homepage on a MacBook">
+        <div class="pj-meta">
+          <h3>Re-design Menteiz Aviation</h3>
+          <div class="pj-tags"><span>UX/UI Designer</span><span>Claude Code, Figma</span><span>2026</span></div>
+        </div>
+      </a>
+      <a class="pj-slide" href="kargo360.html" data-url="kargo360 &middot; a2a + d2d" data-cursor="cta" data-cursor-label="view">
+        <img class="pj-shot" src="assets/projects-kargo.jpg" alt="Kargo360 home screen on an iPhone">
+        <div class="pj-meta">
+          <h3>Re-design Kargo360 App</h3>
+          <div class="pj-tags"><span>UX Research, IA, UI</span><span>Figma</span><span>2025</span></div>
+        </div>
+      </a>
     </div>
-  </a>
+    <button class="pj-nav pj-prev" type="button" aria-label="Previous project" data-cursor="cta" data-cursor-label="prev"></button>
+    <button class="pj-nav pj-next" type="button" aria-label="Next project" data-cursor="cta" data-cursor-label="next"></button>
+    <div class="pj-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+  </div>
   <img class="pj-dock" src="assets/projects-dock.png" alt="macOS dock">
+  <button class="pj-dock-hot" type="button" style="left:538px" data-slide="0" aria-label="Show Flebo" data-cursor="cta" data-cursor-label="flebo"></button>
+  <button class="pj-dock-hot" type="button" style="left:618px" data-slide="1" aria-label="Show Menteiz Aviation" data-cursor="cta" data-cursor-label="menteiz"></button>
   <img class="pj-dog" src="assets/projects-dog.png" alt="">
 
   <!-- ===== Hero name + nav (painted above collage) ===== -->
@@ -443,6 +467,24 @@
         else io3.observe(w.sent);
       }
     }));
+  })();
+
+  // Projects window: three case studies behind the browser chrome's back/forward arrows
+  (function () {
+    const win = document.getElementById('pj-window');
+    const slides = [...win.querySelectorAll('.pj-slide')];
+    const dots = [...win.querySelectorAll('.pj-dots span')];
+    const url = win.querySelector('.pj-url');
+    let i = 0;
+    const go = (n) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      dots.forEach((d, k) => d.classList.toggle('on', k === i));
+      url.innerHTML = slides[i].dataset.url;
+    };
+    win.querySelector('.pj-prev').addEventListener('click', () => go(i - 1));
+    win.querySelector('.pj-next').addEventListener('click', () => go(i + 1));
+    document.querySelectorAll('[data-slide]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.slide)));
   })();
 
   // Nav links scroll to their sections (positions on the 1440px canvas, times current scale)

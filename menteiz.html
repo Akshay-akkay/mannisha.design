@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Re-design Menteiz Aviation — Case Study — Manisha Koranga</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="case.css">
+</head>
+<body class="cs">
+<div class="cs-page">
+  <div class="wrap">
+
+    <header class="cs-header">
+      <a class="back" href="./">&larr;&nbsp; back to the desk</a>
+      <div class="palette">
+        <div class="swatches">
+          <span style="background:#172a4d"></span><span style="background:#0b1c3a"></span>
+          <span style="background:#e02020"></span><span style="background:#e9edf3"></span>
+        </div>
+        <p>COLOUR<br>PALETTE</p>
+      </div>
+    </header>
+
+    <div class="chips">
+      <span class="chip active">Menteiz Aviation</span>
+      <span class="chip">UX</span>
+      <span class="chip">Conversion Optimisation</span>
+      <span class="chip">B2B Workspace</span>
+    </div>
+
+    <h1>Making A Complex B2B Aviation/Cargo Service Easier To Understand, Trust, And Act&nbsp;On.</h1>
+    <p class="sub">The redesigned experience positions Menteiz Aviation around cargo solutions, with clearer service categories, quote initiation, shipment-related actions, credibility metrics, carrier relationships, routes, testimonials, FAQs, and contact conversion points.</p>
+
+    <div class="stats">
+      <div class="stat"><p class="v blue">2 audiences</p><p class="c">one brand, two design languages</p></div>
+      <div class="stat"><p class="v teal">160 commits</p><p class="c">more edits than additions</p></div>
+      <div class="stat"><p class="v orange">27 + 12 lanes</p><p class="c">every arc on the globe is real</p></div>
+    </div>
+
+    <div class="meta">
+      <div><p class="k">role</p><p class="d">UX/UI Designer</p></div>
+      <div><p class="k">timeline</p><p class="d">2 weeks, May 2026</p></div>
+      <div><p class="k">industry</p><p class="d">Aviation / Air Cargo / Logistics</p></div>
+      <div><p class="k">tools</p><p class="d">Claude Code, HTML/CSS/JS, git, Figma</p></div>
+    </div>
+  </div>
+
+  <img class="full" src="assets/menteiz/hero.jpg" alt="Menteiz Aviation homepage hero: We have reinvented the future of air cargo">
+
+  <div class="wrap">
+    <h2 class="hl">Brief</h2>
+    <p>Menteiz Aviation Services is a nineteen-year-old air cargo agent in Kuala Lumpur &mdash; a GSA and CSA moving freight for 20+ carriers across 27 international and 12 domestic lanes, in everything from live animals to oilwell equipment.</p>
+    <blockquote>The redesign had to do two jobs that pull in opposite directions: convince a freight forwarder who has never heard of Menteiz, and get out of the way of one who logs in every morning to raise quotes.</blockquote>
+    <p>The existing website already communicated the company's offering, but the information architecture and presentation could make the experience more focused around <strong>user intent</strong> and <strong>conversion.</strong></p>
+    <h4>So the challenge wasn't</h4>
+    <blockquote>How do I make an aviation website look better?</blockquote>
+    <h4>It was</h4>
+    <blockquote>How do I make a complicated business feel easy to navigate for a human?</blockquote>
+
+    <h2 class="hl">First, I had to understand the mess.</h2>
+    <p>Air freight is sold on credibility and run on paperwork. Menteiz had the credibility &mdash; nineteen years, IATA accreditation, dangerous-goods certification, a carrier list most agents would envy &mdash; and almost none of it was visible online. Meanwhile their customers were raising quotes over email and WhatsApp, then chasing status by phone.</p>
+    <p>So the project was really <strong>two products in one repository</strong>: a <strong>public site that has to win a forwarder's first meeting</strong>, and a <strong>logged-in workspace where that same forwarder raises, tracks and settles cargo quotes.</strong> Both had to feel like Menteiz. Neither could be designed like the other.</p>
+    <h4>So instead of</h4>
+    <blockquote>How might we make another aviation website look impressive?</blockquote>
+    <h4>My design question became:</h4>
+    <blockquote>How might we turn Menteiz&rsquo;s credibility into a digital experience people can act on?</blockquote>
+
+    <h2 class="hl">Two Audiences</h2>
+    <p>There aren't two user groups here so much as two states of one person. On day zero a forwarder is deciding whether Menteiz can be trusted with a pharmaceutical shipment. On day two hundred, that same forwarder wants eleven quotes raised before lunch. Designing one interface for both would have failed both.</p>
+    <div class="pair-labels"><span style="color:#e02020">before login &middot; the shopfront</span><span style="color:#172a4d">after login &middot; the workspace</span></div>
+    <div class="pair" style="margin-top:14px">
+      <div class="card navy">
+        <h5>"Can I trust these people with my cargo?"</h5>
+        <p>A freight forwarder or shipper who has never dealt with Menteiz. Comparing three agents. Reading credentials, not features.</p>
+        <ul>
+          <li>Cinematic: full-bleed video, scroll-scrubbed hero beats</li>
+          <li>Evidence first &mdash; accreditations, carriers, years, lanes</li>
+          <li>Generous type, one idea per screen</li>
+          <li>Motion is allowed to be theatrical</li>
+        </ul>
+        <p class="accent"><i style="background:#e02020"></i>accent: brand red &mdash; used for emphasis</p>
+      </div>
+      <div class="card">
+        <h5>"Get eleven quotes out before lunch."</h5>
+        <p>The same forwarder, now a customer, in the tool every working morning. Speed and status legibility beat everything.</p>
+        <ul>
+          <li>Dense: eight status tiles, thirteen filters, one table</li>
+          <li>State first &mdash; quoted, requested, booked, expired</li>
+          <li>Compact type, tabular numbers, scannable rows</li>
+          <li>Motion reduced to feedback only</li>
+        </ul>
+        <p class="accent"><i style="background:#172a4d"></i>accent: navy &mdash; red reserved for destructive actions</p>
+      </div>
+    </div>
+    <h4>The decision that follows from this</h4>
+    <blockquote>The logged-in product was re-themed off brand red onto navy. Red is a wonderful colour to be sold to and an exhausting one to work inside eight hours a day &mdash; and once red means "cancelled" and "rejected" in a status column, it can't also mean "primary button".</blockquote>
+
+    <h2 class="hl">The rules I gave myself</h2>
+    <blockquote>Once I understood the business, I gave myself three rules.<br>They became the filter for every design decision that followed.</blockquote>
+    <div class="rules">
+      <div class="rule">
+        <h5>Make every claim earn its place.</h5>
+        <ul><li>27 lanes &gt; global reach</li><li>IATA certification &gt; industry expertise</li><li>22 carriers &gt; strong partnerships</li></ul>
+      </div>
+      <div class="rule">
+        <h5>Design motion for the job, not the applause.</h5>
+        <ul><li>Public experience: Explore &middot; Discover &middot; Engage</li><li>Logged-in experience: Quote &middot; Track &middot; Settle</li><li>The public site can afford theatre. The workspace can't.</li></ul>
+      </div>
+      <div class="rule solo">
+        <h5>Never make the interface more certain than the evidence.</h5>
+        <ul><li>If a credential wasn't verified, I didn't invent it [ CLIENT TO PROVIDE ].</li><li>Sometimes the most honest UI is an unfinished one.</li></ul>
+      </div>
+    </div>
+
+    <h2 class="hl">The System</h2>
+    <p>A single set of tokens serves both halves &mdash; what changes is which one is allowed to be the primary. Navy carries the brand everywhere; red leads outside the login and retreats to status-and-danger inside it.</p>
+    <div class="tokens">
+      <div class="token">
+        <p class="kicker">colour</p>
+        <div class="swatch-row"><span style="background:#172a4d"></span><span style="background:#0b1c3a"></span><span style="background:#e02020"></span><span style="background:#1f3a6e"></span><span style="background:#e9edf3"></span></div>
+        <div class="swatch-names"><span>navy</span><span>deep</span><span>red</span><span>action</span><span>ice</span></div>
+      </div>
+      <div class="token">
+        <p class="kicker">type</p>
+        <p class="serif">Twenty-plus carriers</p>
+        <p style="margin-top:12px;font-size:15px;font-weight:700">Grotesk display &middot; tight, italic for emphasis</p>
+        <p class="mono">MONO &middot; CODES, LANES &amp; LABELS</p>
+      </div>
+      <div class="token">
+        <p class="kicker">status language</p>
+        <div class="chips-status"><span class="st-green">Quoted</span><span class="st-purple">Booking Requested</span><span class="st-yellow">Draft</span><span class="st-red">Rejected</span><span class="st-teal">Space available</span></div>
+      </div>
+    </div>
+
+    <h2 class="hl">The Shopfront</h2>
+    <p>The hero uses motion to create attention; the content beneath it uses specificity to earn trust. A <strong>capability ticker</strong> immediately surfaces the eleven areas Menteiz actually handles &mdash; scheduled flights, GSA, CSA, perishables, dangerous goods, vulnerable goods, charter and more &mdash; giving users a clear sense of expertise before asking them to explore further.</p>
+    <img class="fig" src="assets/menteiz/shopfront.jpg" alt="Menteiz homepage on a MacBook with the capability ticker beneath">
+    <blockquote>The homepage doesn't just tell you what Menteiz does. It lets you do it.</blockquote>
+    <p>Most logistics websites make users hunt for the next step: find the right service, find the contact page, write an email, wait.</p>
+    <p>I pulled the three most likely actions into one place:</p>
+    <blockquote>Get a Quick Quote &middot; Track a Shipment &middot; Check a Flight Schedule</blockquote>
+    <img class="fig" src="assets/menteiz/quickquote.jpg" alt="Quick Quote, Track your Shipment and Flight Schedule tabs on the homepage">
+    <div class="intent">
+      <div class="side">User Intent<br>&darr;<br>Action</div>
+      <div class="rows">
+        <div class="row"><span class="n">1</span><span>I want to ship something</span><b>Quick Quote</b></div>
+        <div class="row"><span class="n">2</span><span>I already shipped something</span><b>Track Shipment</b></div>
+        <div class="row"><span class="n">3</span><span>I need to plan a shipment</span><b>Flight Schedule</b></div>
+      </div>
+    </div>
+    <img class="fig" src="assets/menteiz/globe.jpg" alt="Global network page: draggable globe with lanes out of Kuala Lumpur and a paired route list">
+    <h3 style="margin-top:0">Every arc is a real lane</h3>
+    <p>A draggable globe of 27 international and 12 domestic routes out of Kuala Lumpur, with a paired route list so the same information is available without touching the toy. Red arcs are charter, cyan scheduled &mdash; and it degrades to the list when WebGL isn't available.</p>
+    <img class="fig" src="assets/menteiz/segments.jpg" alt="Who they serve and Built for cargo pages">
+    <div class="cap-row c2">
+      <div class="cap"><h6>Who they serve</h6><p>Four segments &mdash; airlines, forwarders, e-commerce, government &amp; defence &mdash; each described in the buyer's own vocabulary.</p></div>
+      <div class="cap"><h6>Ten cargo verticals</h6><p>Each with its own page, because a pharma shipper and an oilwell contractor share no vocabulary at all.</p></div>
+    </div>
+  </div>
+
+  <img class="full" src="assets/menteiz/reinvented.jpg" alt="Menteiz hero: We have reinvented the future of air cargo">
+
+  <div class="wrap">
+    <h2 class="hl">The Workspace</h2>
+    <p>The public site is designed to build confidence. <strong>Behind the login</strong>, the goal changes: make the work effortless. The Cargo Quotes console brings every quote, its state and its next action into a single operational view.</p>
+    <img class="fig" src="assets/menteiz/console.jpg" alt="Cargo Quotes console with five annotations">
+    <div class="cap-row c3">
+      <div class="cap"><h6>1 &middot; Seven items, no nesting.</h6><p>The original drawer had sub-menus; freight staff live in four of these screens, so everything sits one click away.</p></div>
+      <div class="cap"><h6>2 &middot; One primary action.</h6><p>"New Quote" is the only filled button on the page &mdash; everything else is a row action.</p></div>
+      <div class="cap"><h6>3 &middot; Status as the spine.</h6><p>Eight tiles &mdash; all, pending, quoted, requested, booked, expired, rejected, cancelled &mdash; double as the primary filter.</p></div>
+      <div class="cap"><h6>4 &middot; Thirteen filters, laid flat.</h6><p>AWB, customer, dates, origin, destination, airline, commodity, operator. Freight teams search by whatever they happen to have.</p></div>
+      <div class="cap"><h6>5 &middot; Colour carries state.</h6><p>Quoted green, requested purple, rejected red &mdash; so a row reads before it's read.</p></div>
+    </div>
+
+    <h3>Quote &rarr; Flights &rarr; Booking</h3>
+    <p><strong>The core loop.</strong> A quote is raised, matched against live flights with rates and space, then batched into booking requests &mdash; a forwarder rarely wants one flight, they want the best three sent to the airline at once.</p>
+    <img class="fig" src="assets/menteiz/flights.jpg" alt="Cargo Quote Flights screen with the shipment summary pinned in navy and a greyed-out booking where there is no space">
+    <p>The shipment summary is pinned to the top in navy so the thing you're quoting for never leaves the screen. Each flight states its rate per kg and the total, because freight is quoted one way and approved the other. <strong>Where a flight has no space, the action is disabled</strong> rather than hidden &mdash; an operator needs to know the flight exists and is full.</p>
+
+    <img class="fig" src="assets/menteiz/quotes.jpg" alt="Quick Quote without login beside New Quote inside the workspace">
+    <div class="cap-row c2">
+      <div class="cap"><h6>Quick Quote &mdash; no login required</h6><p>The whole point: a prospect can price a shipment before they trust you enough to create an account.</p></div>
+      <div class="cap"><h6>New Quote &mdash; inside</h6><p>The same form, pre-filled from the account, with draft-saving for quotes that wait on customer detail.</p></div>
+    </div>
+    <img class="fig" src="assets/menteiz/bookings.jpg" alt="Your Quote document and My Bookings table">
+    <div class="cap-row c2">
+      <div class="cap"><h6>Your Quote</h6><p>The document a forwarder forwards &mdash; readable by someone who never logs in.</p></div>
+      <div class="cap"><h6>My Bookings</h6><p>Operator and Quote number were promoted to the first two columns &mdash; that's what staff search by.</p></div>
+    </div>
+    <img class="fig" src="assets/menteiz/wallet.jpg" alt="Wallet, Rewards and Track shipment screens">
+    <div class="cap-row c3">
+      <div class="cap"><h6>Wallet</h6><p>Balance and statement, with the top-up row removed once we learned settlement runs on credit terms.</p></div>
+      <div class="cap"><h6>Rewards</h6><p>A loyalty tier for repeat forwarders &mdash; the one page that replaced a nav item mid-project.</p></div>
+      <div class="cap"><h6>Track shipment</h6><p>Public and logged-in, because the person chasing a shipment is often the consignee, not the customer.</p></div>
+    </div>
+
+    <h2 class="hl">The Pushback</h2>
+    <p>This site was designed in code with Claude Code, which means the first draft of every screen arrived fast and looked finished. In a compliance industry that is exactly the risk. An AI will fill an accreditation card with something that reads like an accreditation, and it will look right to anyone who doesn't work in freight.</p>
+    <div class="bars">
+      <div class="bar"><span>added something new</span><i style="--w:100%"></i><b>46</b></div>
+      <div class="bar"><span>rewrote or replaced</span><i style="--w:93%"></i><b>43</b></div>
+      <div class="bar"><span>removed or reverted</span><i style="--w:74%"></i><b>34</b></div>
+      <div class="bar"><span>aligned, pinned, tightened</span><i style="--w:63%"></i><b>29</b></div>
+      <div class="bar"><span>fixed a defect</span><i style="--w:17%"></i><b>8</b></div>
+    </div>
+    <p class="fig-caption">More commits changed or deleted existing work than created it. That ratio is the job.</p>
+
+    <div class="pair">
+      <div class="card no"><p class="kicker">the first answer</p><p>One brand, one accent: the logged-in product inherited the marketing site's red &mdash; red sidebar, red primary buttons, red everywhere.</p></div>
+      <div class="card yes"><p class="kicker">what shipped</p><p>Navy primary inside the login. Red demoted to a status colour &mdash; rejected, cancelled, no space.</p></div>
+    </div>
+    <h4>Why I overrode it</h4>
+    <blockquote>Consistency isn't sameness. A colour can't mean "go" and "this booking failed" on the same screen, and eight hours inside a red interface is genuinely tiring. The AI optimised for brand coherence; the work needed semantic clarity.</blockquote>
+    <p class="log"><b>8 Jun</b>Theme logged-in dashboard with navy-blue primary instead of red</p>
+
+    <div class="pair">
+      <div class="card no"><p class="kicker">the first answer</p><p>A custom cursor across the whole site, plus a WebGL globe with no fallback and a hero carrying two competing CTAs.</p></div>
+      <div class="card yes"><p class="kicker">what shipped</p><p>Native cursor everywhere, a globe that degrades to its route list, and a hero with no buttons at all.</p></div>
+    </div>
+    <h4>Why I overrode it</h4>
+    <blockquote>Three separate versions of the same mistake: effects that impress a designer and cost a user. A custom cursor breaks every affordance people already have; an unguarded WebGL scene shows a corporate client a blank rectangle; two hero CTAs mean neither is the answer. Delete, guard, delete.</blockquote>
+    <p class="log"><b>27 May</b>Theme logged-in dashboard with navy-blue primary instead of red<br><b>26 May</b>Make hero globe fail-safe when WebGL is unavailable<br><b>24 May</b>Remove the two hero CTAs from beat 1</p>
+    <div class="note-dark">And the honest footnote: <em>some of it was just me being wrong.</em> The About hero image changed four times across two days and ended back where it started. Cheap iteration means you can afford to test a hunch &mdash; it doesn't mean the hunch was good.</div>
+    <p class="hand-note hand">plausible is not the same as true. that's the whole job now.</p>
+
+    <h2 class="hl">Reflection</h2>
+    <ul class="stars">
+      <li><strong>Domain ignorance is the real constraint, not tooling.</strong> I could build a flight-selection screen in an afternoon; knowing that operators search by AWB and operator name, that rates are quoted per kilo but approved as a total, and that a full flight must stay visible rather than be filtered away &mdash; that took asking. The interface was never the hard part.</li>
+      <li><strong>Two audiences deserve two design languages.</strong> The most valuable thing on this project wasn't a screen, it was the decision to stop treating the site and the product as one artefact &mdash; and the discipline to keep them recognisably the same brand anyway.</li>
+    </ul>
+    <div class="next-box">
+      <p class="kicker">What&rsquo;s Next</p>
+      <blockquote>Sitting with Menteiz's operations team for a morning to watch the workspace in real use &mdash; every assumption in the workspace deserves to be tested against someone doing the job at speed.</blockquote>
+    </div>
+  </div>
+
+  <div class="zig"></div>
+  <footer class="cs-footer">
+    <div class="wrap">
+      <div class="next">
+        <img class="folder" src="assets/flebo/folder.png" alt="">
+        <div>
+          <p class="next-label">next up - Kargo360 &nbsp;<span>/ back to the folder</span></p>
+          <a class="next-link" href="kargo360.html">Kargo360 &rarr;</a>
+        </div>
+      </div>
+      <div class="foot-row">
+        <p>&copy; 2026 manisha koranga</p>
+        <a href="./">back to desk &uarr;</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    document.querySelectorAll('.hl, h3, blockquote, .fig, .full, .stats, .meta, .card, .rule, .token, .intent, .bars, .stars li, .next-box').forEach((el) => {
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
+</script>
+</body>
+</html>
