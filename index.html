@@ -489,9 +489,24 @@
       if (h) dockDot.style.left = (h.offsetLeft + h.offsetWidth / 2 - 3) + 'px';
     };
     go(0);
-    win.querySelector('.pj-prev').addEventListener('click', () => go(i - 1));
-    win.querySelector('.pj-next').addEventListener('click', () => go(i + 1));
-    document.querySelectorAll('[data-slide]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.slide)));
+    // Auto-cycle every 6s while the window is on screen; any manual pick restarts
+    // the clock, hovering the window pauses it, reduced-motion turns it off.
+    const CYCLE = 6000;
+    let timer = null, visible = false, hovered = false;
+    const stop = () => { clearInterval(timer); timer = null; };
+    const start = () => {
+      if (timer || !visible || hovered || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      timer = setInterval(() => go(i + 1), CYCLE);
+    };
+    const restart = () => { stop(); start(); };
+    const pick = (n) => { go(n); restart(); };
+    win.querySelector('.pj-prev').addEventListener('click', () => pick(i - 1));
+    win.querySelector('.pj-next').addEventListener('click', () => pick(i + 1));
+    document.querySelectorAll('[data-slide]').forEach((b) => b.addEventListener('click', () => pick(+b.dataset.slide)));
+    win.addEventListener('mouseenter', () => { hovered = true; stop(); });
+    win.addEventListener('mouseleave', () => { hovered = false; start(); });
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? start() : stop(); }, { threshold: 0.4 }).observe(win);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
   })();
 
   // Nav links scroll to their sections (positions on the 1440px canvas, times current scale)
