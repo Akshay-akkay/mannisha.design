@@ -346,3 +346,95 @@ body.kargo .closing { margin-top: 110px; }
 .arow b { color: #1c1c1c; }
 .audit .kicker:nth-of-type(2) { margin-top: 30px; }
 h3.green { color: #2e7d32; }
+
+/* ===== Kargo360: components redrawn to match the case-study design ===== */
+
+/* before / after: two phones side by side, each with a chip tag and its caption beneath */
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+.ba figure { padding-left: 32px; }
+.ba-tag {
+  display: inline-block; padding: 3px 10px; background: #111; color: #fff;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+}
+.ba-tag.after { background: #2e5e3a; }
+.ba img { display: block; width: 356px; max-width: 100%; height: auto; margin-top: 18px; }
+.ba .cap { max-width: 340px; margin-top: 22px; }
+.ba .cap h6 { font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
+.cs .ba .cap p { margin-top: 6px; font-size: 15.5px; line-height: 1.5; color: #55534c; }
+
+/* the delete dialog, in the same phone frame */
+body.kargo .side-fig { grid-template-columns: 360px 1fr; align-items: center; }
+body.kargo .side-fig .fig { width: 100%; height: auto; }
+body.kargo .annots div { border-left-color: #d6e03d; padding-left: 20px; margin-top: 24px; }
+body.kargo .annots h6 { font-size: 18px; }
+.cs.kargo .annots p { font-size: 15.5px; }
+
+/* root-cause error pills: a round alert glyph, like the app's toasts */
+body.kargo .err .pill { display: flex; align-items: center; gap: 10px; border-radius: 4px; background: #c62828; font-size: 13px; }
+body.kargo .err .pill::before {
+  content: "!"; flex: none; opacity: 1; width: 16px; height: 16px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(255, 255, 255, 0.22);
+  font-size: 11px; font-weight: 800; line-height: 1;
+}
+.cs.kargo .err p { font-size: 16px; }
+
+/* the lifecycle chain, at reading size */
+body.kargo .chain { gap: 14px; padding: 18px 24px; }
+body.kargo .chain span { font-size: 15px; padding: 9px 28px; border-radius: 2px; }
+
+/* callouts: green kicker, statement-sized text */
+body.kargo .callout .kicker { color: #2e5e3a; }
+.cs.kargo .callout p:not(.kicker) { font-size: 20px; line-height: 1.45; }
+
+/* "what I decided" rules */
+body.kargo .rules-list div { padding: 26px 0; }
+body.kargo .rules-list div:last-child { border-bottom: 0; }
+body.kargo .rules-list h5 { font-size: 21px; }
+body.kargo .rules-list h5::before { font-size: 11px; color: #1faa3b; }
+.cs.kargo .rules-list p { margin-top: 8px; font-size: 17px; }
+
+/* the object model, drawn as containment: each level sits inside its parent */
+.objects.nest { padding: 0; background: none; border: 0; }
+.nest .obj { display: block; padding: 0 22px 22px; border: 1px solid #d5dbe5; background: #f3f5f9; font-size: 15px; }
+.nest > .obj { background: #f6f7fa; }
+.nest .obj .obj { background: #edf0f6; }
+.nest .obj .obj .obj { background: #e6ebf3; }
+.nest .obj .obj .obj .obj { background: #fff; padding-bottom: 30px; }
+.nest .obj:last-child { border-bottom: 1px solid #d5dbe5; }
+.obj-row { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; padding: 18px 0; }
+.obj-row b { font-size: 15px; letter-spacing: 3px; text-transform: uppercase; }
+.obj-row > span { color: #55534c; }
+.nest .chips-status { margin: 0; gap: 8px; }
+.nest .chips-status span { background: #e8ebf1; color: #3b4658; font-size: 12.5px; font-weight: 600; border-radius: 3px; padding: 5px 10px; }
+.nest .chips-status span.ok { background: #dff3e4; color: #1e7a3a; }
+
+/* "patterns that scale" notes */
+body.kargo .notes { gap: 16px 28px; }
+body.kargo .notes div { padding: 22px 24px; }
+body.kargo .notes h5 { font-size: 17px; }
+.cs.kargo .notes p { font-size: 15.5px; line-height: 1.5; }
+
+/* "the system is visible": numbered steps */
+.cs .card ol.steps { list-style: none; counter-reset: step; margin: 26px 0 0 48px; }
+.cs .card ol.steps li { counter-increment: step; display: flex; align-items: center; gap: 14px; font-size: 17px; line-height: 1.4; margin-top: 16px; }
+.cs .card ol.steps li::before {
+  content: counter(step); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  display: grid; place-items: center; background: #c62828; color: #fff; font-size: 12px; font-weight: 700;
+}
+.kicker.green + ol.steps li::before { background: #2e5e3a; }
+.cs .card p.steps-foot { margin-top: 26px; padding-top: 18px; border-top: 1px dashed rgba(0, 0, 0, 0.18); font-size: 14px; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .ba { grid-template-columns: 1fr; gap: 56px; }
+  .ba figure { padding-left: 0; }
+  body.kargo .side-fig { grid-template-columns: 1fr; }
+  body.kargo .side-fig .fig { max-width: 320px; }
+  .obj-row { grid-template-columns: 1fr; gap: 6px; }
+  .nest .obj { padding: 0 10px 12px; }
+  .cs .card ol.steps { margin-left: 8px; }
+}
+body.kargo .rules-list h5::before, body.kargo .notes h5::before {
+  content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 12px 0 0;
+  vertical-align: 0.18em; background: #1faa3b;
+}
+body.kargo .notes h5::before { width: 7px; height: 7px; margin-right: 10px; background: #2e5e3a; }

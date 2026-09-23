@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Homemade+Apple&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="case.css?v=20260923g">
+<link rel="stylesheet" href="case.css?v=20260923i">
 <script src="analytics.js?v=20260923b" defer></script>
 </head>
 <body class="cs kargo" data-page="kargo360" data-case="Kargo360">
@@ -143,11 +143,14 @@
     <p>The redesign gives each operational object a clear identity, data hierarchy, state, and set of legal actions.</p>
     <h4>the object model, drawn once</h4>
     <blockquote>This is the diagram the old app never showed. Containment runs outside-in, and every level carries its own state &mdash; which is exactly what the error messages were policing.</blockquote>
-    <div class="objects">
-      <div class="obj"><b>Flight</b><span>a scheduled departure, DL1 &rarr; BO2</span><div class="chips-status"><span class="st-yellow">planned</span><span class="st-green">manifested</span><span class="st-teal">departed</span></div></div>
-      <div class="obj"><b>ULD</b><span>the container loaded onto the aircraft</span><div class="chips-status"><span class="st-yellow">in transit</span><span class="st-green">arrived</span><span class="st-red">broken</span></div></div>
-      <div class="obj"><b>Cart</b><span>a build unit inside the ULD</span><div class="chips-status"><span class="st-yellow">empty</span><span class="st-green">built</span></div></div>
-      <div class="obj"><b>AWB &amp; pieces</b><span>the shipment itself &mdash; 775-60230715</span><div class="chips-status"><span class="st-yellow">unassigned</span><span class="st-green">assigned</span><span class="st-purple">offloaded</span></div></div>
+    <div class="objects nest">
+      <div class="obj"><div class="obj-row"><b>Flight</b><span>a scheduled departure, DL1 &rarr; BO2</span><div class="chips-status"><span>planned</span><span>manifested</span><span class="ok">departed</span></div></div>
+        <div class="obj"><div class="obj-row"><b>ULD</b><span>the container loaded onto the aircraft</span><div class="chips-status"><span>in transit</span><span class="ok">arrived</span><span>broken</span></div></div>
+          <div class="obj"><div class="obj-row"><b>Cart</b><span>a build unit inside the ULD</span><div class="chips-status"><span>empty</span><span class="ok">built</span></div></div>
+            <div class="obj"><div class="obj-row"><b>AWB &amp; pieces</b><span>the shipment itself &mdash; 775-60230715</span><div class="chips-status"><span>unassigned</span><span class="ok">assigned</span><span>offloaded</span></div></div></div>
+          </div>
+        </div>
+      </div>
     </div>
     <p>Manifest sits alongside rather than inside: it describes a flight's contents at a point in time, which is why "flight must first be manifested" was a sequencing rule and not a property of any one object.</p>
 
@@ -161,15 +164,13 @@
       <div><h5>Feedback gets out of the way</h5><p>Success and error states take over the screen or use non-blocking placement, instead of covering the field or action the user needs next.</p></div>
     </div>
     <h3 class="green">break uld, before and after</h3>
-    <div class="pair-labels" style="margin-top:20px"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/breakuld.webp" alt="Break ULD screen before and after the redesign" style="margin-top:14px">
-    <div class="cap-row c2" style="margin-top:-30px">
-      <div class="cap"><h6>Labels inside the border</h6><p>Every label is a 10px notch cut into the outline of its own box, and the only action, "Save", escapes from behind the FAB and lands half on top of the navigation.</p></div>
-      <div class="cap"><h6>Labels above the field</h6><p>The same values, set as a proper form. The card groups what belongs to one AWB; nothing floats over anything; the checkbox is a real target.</p></div>
+    <div class="ba">
+      <figure><span class="ba-tag">before</span><img src="assets/kargo/breakuld-before.webp" width="600" height="1177" alt="Break ULD before: floating labels notched into each field, Save escaping from behind the floating button" loading="lazy"><figcaption class="cap"><h6>Labels inside the border</h6><p>Every label is a 10px notch cut into the outline of its own box, and the only action, "Save", escapes from behind the FAB and lands half on top of the navigation.</p></figcaption></figure>
+      <figure><span class="ba-tag after">after</span><img src="assets/kargo/breakuld-after.webp" width="600" height="1177" alt="Break ULD after: labels above each field, one card per AWB, a real checkbox" loading="lazy"><figcaption class="cap"><h6>Labels above the field</h6><p>The same values, set as a proper form. The card groups what belongs to one AWB; nothing floats over anything; the checkbox is a real target.</p></figcaption></figure>
     </div>
     <h3>and the dialog that appeared everywhere</h3>
     <div class="side-fig">
-      <img class="fig" src="assets/kargo/dialog.jpg" alt="Legacy delete confirmation: Are you sure you want to delete this Uld? Cancel / Yes">
+      <img class="fig" src="assets/kargo/dialog.webp" width="600" height="1177" loading="lazy" alt="Legacy delete confirmation: Are you sure you want to delete this Uld? Cancel / Yes">
       <div class="annots">
         <div><h6>What it said</h6><p>"Are you sure you want to delete this Uld?" &mdash; a default OS alert, with the destructive choice rendered as the plain word Yes, at exactly the same visual weight as Cancel.</p></div>
         <div><h6>What it didn't say</h6><p>A ULD contains AWBs. Deleting it unassigns all of them &mdash; the consequence the person actually needs to weigh. The dialog never mentions them.</p></div>
@@ -180,11 +181,9 @@
     <h2 class="hl">Rebuilding D2D</h2>
     <p>D2D was where <strong>restraint mattered more than invention</strong>. Its information architecture was already correct: Booking, Firstmile, Trucking, Motherbag and Lastmile. Re-architecting it would have destroyed useful muscle memory.</p>
     <p>So I kept the structure and changed what the structure could communicate: priority, state, movement and next action.</p>
-    <div class="pair-labels"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/d2dhome.webp" alt="D2D home before, five identical tiles on a gradient, and after, illustrated cards with active shipments" style="margin-top:14px;width:70%;margin-left:auto;margin-right:auto">
-    <div class="cap-row c2" style="margin-top:-30px">
-      <div class="cap"><h6>The right five things</h6><p>on a magenta-to-orange gradient, as five identical tiles, with no status, no priority and no way to tell what's urgent.</p></div>
-      <div class="cap"><h6>The same five things, able to speak</h6><p>Illustrated cards you can distinguish at a glance, then the two things the old home never showed: what's moving now, and what just happened.</p></div>
+    <div class="ba">
+      <figure><span class="ba-tag">before</span><img src="assets/kargo/d2dhome-before.webp" width="600" height="1177" alt="D2D home before: five identical tiles on a magenta-to-orange gradient" loading="lazy"><figcaption class="cap"><h6>The right five things</h6><p>on a magenta-to-orange gradient, as five identical tiles, with no status, no priority and no way to tell what's urgent.</p></figcaption></figure>
+      <figure><span class="ba-tag after">after</span><img src="assets/kargo/d2dhome-after.webp" width="600" height="1177" alt="D2D home after: illustrated service cards with a single Book Now" loading="lazy"><figcaption class="cap"><h6>The same five things, able to speak</h6><p>Illustrated cards you can distinguish at a glance, then the two things the old home never showed: what's moving now, and what just happened.</p></figcaption></figure>
     </div>
   </div>
 
@@ -201,19 +200,11 @@
   </div>
 
   <div class="wrap">
-    <div class="cap-row c4" style="margin-top:32px">
-      <div class="cap"><h6>1. One primary action</h6><p>"What would you like to book today?" and a single Book Now. The old home opened on an unlabelled tile grid with no stated purpose.</p></div>
-      <div class="cap"><h6>2. Journey modules</h6><p>The inherited modules, now each with an illustration and a subtitle in the driver's language. Same IA &mdash; finally distinguishable at arm's length.</p></div>
-      <div class="cap"><h6>3. Active shipments</h6><p>A state chip, a From&rarr;To line and an estimated delivery. The single biggest answer to "visibility of system status".</p></div>
-      <div class="cap"><h6>4. A persistent activity feed</h6><p>Picked up, in transit, delayed &mdash; colour-coded and scrollable. Feedback you can go back to, instead of a bar that disappears.</p></div>
-    </div>
 
     <h3>The pickup card</h3>
-    <div class="pair-labels" style="margin-top:20px"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/pickup.webp" alt="My Pickup card before and after the redesign" style="margin-top:14px">
-    <div class="cap-row c2" style="margin-top:-30px">
-      <div class="cap"><h6>Decode it yourself</h6><p>Bare codes, uniform grey labels, an address wrapping mid-word, and a success bar parked over the next card.</p></div>
-      <div class="cap"><h6>Read it at a glance</h6><p>The route is drawn, not encoded; the address gets room to breathe; Reject and Confirm carry equal width but unequal weight.</p></div>
+    <div class="ba">
+      <figure><span class="ba-tag">before</span><img src="assets/kargo/pickup-before.webp" width="600" height="1177" alt="My Pickup before: bare codes, grey labels and a success bar over the next card" loading="lazy"><figcaption class="cap"><h6>Decode it yourself</h6><p>Bare codes, uniform grey labels, an address wrapping mid-word, and a success bar parked over the next card.</p></figcaption></figure>
+      <figure><span class="ba-tag after">after</span><img src="assets/kargo/pickup-after.webp" width="600" height="1177" alt="My Pickup after: the route drawn DL1 to BO2, the address given room, Reject and Confirm" loading="lazy"><figcaption class="cap"><h6>Read it at a glance</h6><p>The route is drawn, not encoded; the address gets room to breathe; Reject and Confirm carry equal width but unequal weight.</p></figcaption></figure>
     </div>
 
     <h3>assignment and structured reasons</h3>
@@ -223,19 +214,17 @@
 
     <h2 class="hl">Recognition over recall</h2>
     <p>Special Handling Codes are controlled operational vocabulary. The legacy experience gave users a text box and expected recall. The redesign makes them searchable and multi-selectable in a focused sheet.</p>
-    <div class="pair-labels"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/shc.webp" alt="SHC code entry before, a typed field, and after, a searchable multi-select sheet" style="margin-top:14px">
-    <div class="cap-row c2" style="margin-top:-30px">
-      <div class="cap"><h6>A text box and a hope</h6><p>"SHC Code*" sits as a typed field among fourteen others &mdash; recalled from memory, validated only on submit.</p></div>
-      <div class="cap"><h6>Search, then select</h6><p>A searchable checklist in a sheet over the booking you're already in. Multi-select, because shipments routinely carry more than one code.</p></div>
+    <div class="ba">
+      <figure><span class="ba-tag">before</span><img src="assets/kargo/shc-before.webp" width="600" height="1177" alt="SHC code before: a typed field among fourteen others on the booking form" loading="lazy"><figcaption class="cap"><h6>A text box and a hope</h6><p>"SHC Code*" sits as a typed field among fourteen others &mdash; recalled from memory, validated only on submit.</p></figcaption></figure>
+      <figure><span class="ba-tag after">after</span><img src="assets/kargo/shc-after.webp" width="600" height="1177" alt="SHC code after: a searchable multi-select sheet over the booking" loading="lazy"><figcaption class="cap"><h6>Search, then select</h6><p>A searchable checklist in a sheet over the booking you're already in. Multi-select, because shipments routinely carry more than one code.</p></figcaption></figure>
     </div>
     <div class="callout green"><p class="kicker">Why this matters</p><p>This is the difference between an interface that assumes expertise and one that supplies it. In a domain where the wrong code can become a safety issue, recognition over recall is not a usability nicety.</p></div>
 
     <h2 class="hl">The system is visible</h2>
     <p>The whole project reduces to one change in the order of events.</p>
     <div class="pair">
-      <div class="card" style="background:#fff0ef;border-color:#f3c9c6"><p class="kicker red">Before &mdash; reacting to mistakes</p><ol><li>Attempt action</li><li>System rejects it</li><li>User interprets error</li><li>User tries again</li></ol><p style="font-size:13px;color:#c62828">&#8635; and repeats, once per shift, for years</p></div>
-      <div class="card" style="background:#eef7ee;border-color:#c5e2c7"><p class="kicker green">After &mdash; communicating state</p><ol><li>System exposes state</li><li>Only valid actions are available</li><li>User understands the next step</li><li>Task is completed</li></ol><p style="font-size:13px;color:#2e7d32">&#10003; no interpretation required</p></div>
+      <div class="card" style="background:#fff0ef;border-color:#f3c9c6"><p class="kicker red">Before &mdash; reacting to mistakes</p><ol class="steps"><li>Attempt action</li><li>System rejects it</li><li>User interprets error</li><li>User tries again</li></ol><p class="steps-foot" style="color:#c62828">&#8635; and repeats, once per shift, for years</p></div>
+      <div class="card" style="background:#eef7ee;border-color:#c5e2c7"><p class="kicker green">After &mdash; communicating state</p><ol class="steps"><li>System exposes state</li><li>Only valid actions are available</li><li>User understands the next step</li><li>Task is completed</li></ol><p class="steps-foot" style="color:#2e7d32">&#10003; no interpretation required</p></div>
     </div>
     <div class="callout"><p class="kicker">What changed</p><p>Across both apps, the redesign shifts the interface from reacting to mistakes to communicating the operational state that makes those mistakes predictable.</p></div>
 
@@ -282,7 +271,7 @@
     const io = new IntersectionObserver((es) => {
       for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
-    document.querySelectorAll('.hl, h3, blockquote, .fig, .full, .stats, .meta, .card, .op, .metric, .callout, .chain, .objects, .note-dark, .audit').forEach((el) => {
+    document.querySelectorAll('.hl, h3, blockquote, .fig, .full, .stats, .meta, .card, .op, .metric, .callout, .chain, .objects, .note-dark, .audit, .ba figure').forEach((el) => {
       el.classList.add('rv');
       io.observe(el);
     });
