@@ -131,13 +131,19 @@ img { max-width: none; }
 .next { display: flex; align-items: center; gap: 34px; padding: 120px 0 150px; }
 .folder { width: 84px; }
 .next-label { font-size: 16px; font-weight: 600; }
-.next-label span { color: #8d8d8d; font-weight: 400; }
+.next-label .folder-link { color: #8d8d8d; font-weight: 400; text-decoration: none; }
+.folder-link { flex: none; line-height: 0; }
+.next-label .folder-link, .next-link, .foot-row a { text-underline-offset: 4px; }
+.next-label .folder-link:hover, .next-link:hover, .foot-row a:hover { text-decoration: underline; }
+.folder { height: auto; transition: transform 0.2s ease; }
+.folder-link:hover .folder { transform: translateY(-3px); }
 .next-link { display: inline-block; margin-top: 10px; font-size: clamp(36px, 4vw, 58px); color: #fff; text-decoration: none; letter-spacing: -1px; }
 .foot-row {
   display: flex; justify-content: space-between; align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.14); padding: 26px 0 34px; font-size: 14px; color: #9a9a9a;
 }
 .foot-row a { color: #d8d8d8; text-decoration: none; }
+.cs .foot-row p { margin: 0; font-size: 14px; line-height: 1.4; } /* same size and baseline as "back to desk" */
 
 /* reveals */
 @media (prefers-reduced-motion: no-preference) {
@@ -331,10 +337,11 @@ img { max-width: none; }
 
 /* Kargo360 page accents: peach heading highlight, red footer */
 body.kargo h2.hl { background: #fcc8a3; }
-body.kargo .zig { background: conic-gradient(from 135deg at 50% 0%, #ee4a4a 90deg, #0000 0) 0 0 / 64px 30px repeat-x; margin-top: 0; }
-body.kargo .cs-footer { background: #ee4a4a; }
-body.kargo .foot-row { border-top-color: rgba(255, 255, 255, 0.35); color: #ffe3e3; }
-body.kargo .foot-row a, body.kargo .next-label span { color: #ffe3e3; }
+body.kargo .zig { background: conic-gradient(from 135deg at 50% 0%, #d6e03d 90deg, #0000 0) 0 0 / 64px 30px repeat-x; margin-top: -30px; position: relative; } /* overlaps the closing section so black fills the gaps */
+body.kargo .cs-footer { background: #d6e03d; color: #141414; } /* the lime of "right complexity visible" */
+body.kargo .next-link { color: #141414; }
+body.kargo .foot-row { border-top-color: rgba(20, 20, 20, 0.25); color: #3a3d12; }
+body.kargo .foot-row a, body.kargo .next-label .folder-link { color: #3a3d12; }
 body.kargo .closing { margin-top: 110px; }
 .stats.divided .stat { padding-left: 22px; border-left: 3px solid #e02020; }
 .stats.divided .stat:first-child { padding-left: 0; border-left: 0; }
@@ -351,20 +358,21 @@ h3.green { color: #2e7d32; }
 
 /* before / after: two phones side by side, each with a chip tag and its caption beneath */
 .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
-.ba figure { padding-left: 32px; }
 .ba-tag {
   display: inline-block; padding: 3px 10px; background: #111; color: #fff;
   font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
 }
 .ba-tag.after { background: #2e5e3a; }
-.ba img { display: block; width: 356px; max-width: 100%; height: auto; margin-top: 18px; }
+/* the frame images carry ~3.8% transparent margin left of the side buttons; pull it back
+   so the phone lines up with the chip and caption on the text edge */
+.ba img { display: block; width: 356px; max-width: 100%; height: auto; margin-top: 18px; translate: -3.8% 0; }
 .ba .cap { max-width: 340px; margin-top: 22px; }
 .ba .cap h6 { font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
 .cs .ba .cap p { margin-top: 6px; font-size: 15.5px; line-height: 1.5; color: #55534c; }
 
 /* the delete dialog, in the same phone frame */
 body.kargo .side-fig { grid-template-columns: 360px 1fr; align-items: center; }
-body.kargo .side-fig .fig { width: 100%; height: auto; }
+body.kargo .side-fig .fig { width: 100%; height: auto; translate: -3.8% 0; }
 body.kargo .annots div { border-left-color: #d6e03d; padding-left: 20px; margin-top: 24px; }
 body.kargo .annots h6 { font-size: 18px; }
 .cs.kargo .annots p { font-size: 15.5px; }
@@ -426,7 +434,6 @@ body.kargo .notes h5 { font-size: 17px; }
 
 @media (max-width: 900px) {
   .ba { grid-template-columns: 1fr; gap: 56px; }
-  .ba figure { padding-left: 0; }
   body.kargo .side-fig { grid-template-columns: 1fr; }
   body.kargo .side-fig .fig { max-width: 320px; }
   .obj-row { grid-template-columns: 1fr; gap: 6px; }
@@ -438,3 +445,37 @@ body.kargo .rules-list h5::before, body.kargo .notes h5::before {
   vertical-align: 0.18em; background: #1faa3b;
 }
 body.kargo .notes h5::before { width: 7px; height: 7px; margin-right: 10px; background: #2e5e3a; }
+
+/* ===== Flebo: "four trust failures" — notes pinned over the lab listing + package card =====
+   Everything is placed on a 1810x935 design canvas (percentages) and sized in cqw of the
+   figure, so the composition scales as one piece. 1 design px = 0.05525cqw. */
+.tf { position: relative; container-type: inline-size; }
+.tf-stage { position: relative; aspect-ratio: 1810 / 935; }
+.tf-stage img { position: absolute; display: block; height: auto; }
+.tf-shot { left: 19.448%; top: 5.027%; width: 61.547%; }
+.tf-card { left: 1.215%; top: 52.193%; width: 23.094%; border-radius: 1.3cqw; }
+.tf-note {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w);
+  padding: var(--pt, 0.95cqw) var(--pr, 1.99cqw) var(--pb, 1.1cqw) var(--pl, 1.99cqw); background: #fdf5a5;
+}
+.tf-note::before {  /* a strip of tape */
+  content: ""; position: absolute; left: var(--tape, 40%); top: -0.61cqw;
+  width: 3.87cqw; height: 0.72cqw; background: rgba(247, 230, 150, 0.8);
+}
+.tf-note:not([style*="--tape"])::before { display: none; }
+.tf-note h5 { position: relative; font-size: 1.265cqw; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; color: #141414; }
+.tf-note h5::before {
+  content: ""; position: absolute; left: var(--bx, -1.1cqw); top: 0.42em; width: 0.77cqw; height: 0.77cqw; background: #dd524c;
+}
+.cs .tf-note p { margin-top: 0.5cqw; max-width: none; font-size: 1.1cqw; line-height: 1.42cqw; color: #5f5d54; }
+.tf-corner { position: absolute; left: 18.343%; top: 2.995%; width: 1.99cqw; height: 1.99cqw; border-top: max(2px, 0.17cqw) solid #141414; border-left: max(2px, 0.17cqw) solid #141414; }
+
+/* narrow screens: the notes can't stay legible at composition scale, so they
+   drop below the pictures as a list */
+@media (max-width: 900px) {
+  .tf-note { position: relative; left: auto; top: auto; width: auto; margin-top: 14px; padding: 14px 18px 16px 34px; }
+  .tf-note::before { display: none; }
+  .tf-note h5 { font-size: 16px; }
+  .tf-note h5::before { left: -18px; width: 9px; height: 9px; }
+  .cs .tf-note p { margin-top: 6px; font-size: 15px; line-height: 1.45; }
+}

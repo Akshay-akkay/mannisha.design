@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="case.css?v=20260923i">
-<script src="analytics.js?v=20260923b" defer></script>
+<link rel="stylesheet" href="case.css?v=20260923o">
+<script src="analytics.js?v=20260923c" defer></script>
 </head>
 <body class="cs" data-page="flebo" data-case="Flebo">
 <div class="cs-page">
@@ -79,7 +79,19 @@
     <h4>What we discovered</h4>
     <p>User were actively looking for packages but it was too difficult to understand what package is providing which test and even someone moves forward after selecting a package it was the lab listing page which shows multiple labs providing the selected package. But every lab is providing different number of tests and pricing is also different.</p>
     <blockquote>The audit found four trust failures, all variations of one theme &mdash; numbers without context:</blockquote>
-    <img class="fig" src="assets/flebo/packages.jpg" alt="Flebo package cards annotated with the four trust failures">
+    <!-- The four trust failures, pinned as notes over the lab listing and the package card
+         (positions on a 1810x935 design canvas) -->
+    <figure class="fig tf">
+      <div class="tf-stage">
+        <img class="tf-shot" src="assets/flebo/listing.webp" width="1600" height="961" loading="lazy" alt="Flebo lab listing for Basic Health Monitoring Tests: removable test pills above a table of labs, each offering its own version of the package with a different test count and price">
+        <img class="tf-card" src="assets/flebo/package-card.webp" width="1029" height="687" loading="lazy" alt="Basic Health Package card: Test Included: 50, up to 62% off, ₹1300 now ₹499">
+      </div>
+      <div class="tf-note" style="--x:1.215%;--y:7.273%;--w:22.376%;--tape:41%"><h5>the hierarchy was invisible.</h5><p>Those pills were test categories; the 58 were parameters inside. The data existed, but the structure was never disclosed.</p></div>
+      <div class="tf-note" style="--x:70.276%;--y:2.46%;--w:28.287%;--tape:36%;--pt:2.1cqw;--pb:1.66cqw;--pl:2.82cqw;--pr:1.66cqw;--bx:-1.38cqw"><h5>the edit feature created fear, not flexibility.</h5><p>Removable pills let non-experts delete tests silently with no confirmation or undo.</p></div>
+      <div class="tf-note" style="--x:11.436%;--y:79.572%;--w:22.431%;--pl:2.15cqw;--pr:2.76cqw"><h5>&ldquo;50 tests&rdquo; meant nothing.</h5><p>Package cards showed a high test count, but detail pages had only 5&ndash;6 pills. Claiming 50 but showing 6 feels deceptive in healthcare.</p></div>
+      <div class="tf-note" style="--x:71.768%;--y:63.957%;--w:25.635%;--tape:36%;--pl:2.93cqw;--pr:3.87cqw;--bx:-1.38cqw"><h5>labs vary, and nobody said so.</h5><p>One lab's CBC has 18 parameters, another's 24. Users thought they were comparing like for like but felt misled after choosing based on price.</p></div>
+      <span class="tf-corner" aria-hidden="true"></span>
+    </figure>
 
     <h2 class="hl">What I learned and fixed</h2>
     <h3>Phase 1: Solving the Clarity Gap</h3>
@@ -206,9 +218,9 @@
   <footer class="cs-footer">
     <div class="wrap">
       <div class="next">
-        <img class="folder" src="assets/flebo/folder.png" alt="">
+        <a class="folder-link" href="./#work" aria-label="Back to the projects folder"><img class="folder" src="assets/flebo/folder.png?v=2" alt="" width="135" height="120"></a>
         <div>
-          <p class="next-label">next up - Menteiz Aviation &nbsp;<span>/ back to the folder</span></p>
+          <p class="next-label">next up - Menteiz Aviation &nbsp;<a class="folder-link" href="./#work">/ back to the folder</a></p>
           <a class="next-link" href="menteiz.html">Menteiz Aviation &rarr;</a>
         </div>
       </div>

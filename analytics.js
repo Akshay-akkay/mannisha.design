@@ -60,6 +60,7 @@
     if (a.matches('.pj-slide') && proj) return track(proj + '_case_study_click');
 
     // Case study pages
+    if (a.matches('.folder-link')) return track('back_to_folder_click');
     if (a.matches('.back') || a.matches('.foot-row a')) return track('back_to_desk_click');
     if (a.matches('.next-link') && proj) return track(proj + '_next_up_click');
     if (a.matches('.video-toggle')) return track(page + (a.getAttribute('aria-label') === 'Play video' ? '_video_play_click' : '_video_pause_click'));

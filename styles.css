@@ -143,6 +143,8 @@ a { color: inherit; text-decoration: none; }
 /* ===== Projects — macOS desktop theme (1694 – 2738) =====
    Geometry and imagery from the Figma frame; bitmaps exported at 2x. */
 
+.section-anchor { position: absolute; left: 0; width: 1px; height: 1px; pointer-events: none; }
+
 .projects-bg { position: absolute; left: -5px; top: 1694px; width: 1449px; height: 1044px; object-fit: cover; }
 
 .projects-heading { position: absolute; left: 50%; transform: translateX(-50%); top: 1741px; text-align: center; }
