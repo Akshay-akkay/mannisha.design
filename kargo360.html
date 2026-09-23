@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Homemade+Apple&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="case.css?v=20260914b">
-<script src="analytics.js?v=20260914c" defer></script>
+<link rel="stylesheet" href="case.css?v=20260923g">
+<script src="analytics.js?v=20260923b" defer></script>
 </head>
 <body class="cs kargo" data-page="kargo360" data-case="Kargo360">
 <div class="cs-page">
@@ -52,7 +52,17 @@
     </div>
   </div>
 
-  <img class="full" src="assets/kargo/hero.jpg" alt="Hand holding a phone with the redesigned Kargo360 home screen against an airport cargo apron at dusk">
+  <!-- The held phone is replaced by the recording's iPhone, playing the home screen -->
+  <div class="full full-video">
+    <img src="assets/kargo/hero.jpg?v=2" alt="Hand holding an iPhone with the redesigned Kargo360 home screen against an airport cargo apron at dusk">
+    <div class="phone-video in-hand">
+      <video src="assets/projects/kargo.mp4?v=2" poster="assets/projects/kargo-poster.jpg?v=2" muted playsinline loop preload="none" aria-label="Screen recording: scrolling the redesigned Kargo360 home screen"></video>
+    </div>
+    <button class="video-toggle on-photo" type="button" aria-label="Pause video">
+      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+      <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+    </button>
+  </div>
 
   <div class="wrap">
     <h2 class="hl">Brief</h2>
@@ -152,7 +162,7 @@
     </div>
     <h3 class="green">break uld, before and after</h3>
     <div class="pair-labels" style="margin-top:20px"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/breakuld.jpg" alt="Break ULD screen before and after the redesign" style="margin-top:14px">
+    <img class="fig" src="assets/kargo/breakuld.webp" alt="Break ULD screen before and after the redesign" style="margin-top:14px">
     <div class="cap-row c2" style="margin-top:-30px">
       <div class="cap"><h6>Labels inside the border</h6><p>Every label is a 10px notch cut into the outline of its own box, and the only action, "Save", escapes from behind the FAB and lands half on top of the navigation.</p></div>
       <div class="cap"><h6>Labels above the field</h6><p>The same values, set as a proper form. The card groups what belongs to one AWB; nothing floats over anything; the checkbox is a real target.</p></div>
@@ -171,14 +181,24 @@
     <p>D2D was where <strong>restraint mattered more than invention</strong>. Its information architecture was already correct: Booking, Firstmile, Trucking, Motherbag and Lastmile. Re-architecting it would have destroyed useful muscle memory.</p>
     <p>So I kept the structure and changed what the structure could communicate: priority, state, movement and next action.</p>
     <div class="pair-labels"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/d2dhome.jpg" alt="D2D home before, five identical tiles on a gradient, and after, illustrated cards with active shipments" style="margin-top:14px;width:70%;margin-left:auto;margin-right:auto">
+    <img class="fig" src="assets/kargo/d2dhome.webp" alt="D2D home before, five identical tiles on a gradient, and after, illustrated cards with active shipments" style="margin-top:14px;width:70%;margin-left:auto;margin-right:auto">
     <div class="cap-row c2" style="margin-top:-30px">
       <div class="cap"><h6>The right five things</h6><p>on a magenta-to-orange gradient, as five identical tiles, with no status, no priority and no way to tell what's urgent.</p></div>
       <div class="cap"><h6>The same five things, able to speak</h6><p>Illustrated cards you can distinguish at a glance, then the two things the old home never showed: what's moving now, and what just happened.</p></div>
     </div>
   </div>
 
-  <img class="full" src="assets/kargo/homeannot.jpg" alt="Redesigned D2D home screen with four annotations: one primary action, journey modules, active shipments, a persistent activity feed">
+  <!-- The D2D home recording plays on the figure's phone (same device, laid exactly over the still) -->
+  <div class="full full-video">
+    <img src="assets/kargo/homeannot.jpg" alt="Redesigned D2D home screen with four annotations: one primary action, journey modules, active shipments, a persistent activity feed">
+    <div class="phone-video">
+      <video src="assets/projects/kargo.mp4?v=2" poster="assets/projects/kargo-poster.jpg?v=2" muted playsinline loop preload="none" aria-label="Screen recording: scrolling the redesigned D2D home screen"></video>
+    </div>
+    <button class="video-toggle" type="button" aria-label="Pause video">
+      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+      <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+    </button>
+  </div>
 
   <div class="wrap">
     <div class="cap-row c4" style="margin-top:32px">
@@ -190,7 +210,7 @@
 
     <h3>The pickup card</h3>
     <div class="pair-labels" style="margin-top:20px"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/pickup.jpg" alt="My Pickup card before and after the redesign" style="margin-top:14px">
+    <img class="fig" src="assets/kargo/pickup.webp" alt="My Pickup card before and after the redesign" style="margin-top:14px">
     <div class="cap-row c2" style="margin-top:-30px">
       <div class="cap"><h6>Decode it yourself</h6><p>Bare codes, uniform grey labels, an address wrapping mid-word, and a success bar parked over the next card.</p></div>
       <div class="cap"><h6>Read it at a glance</h6><p>The route is drawn, not encoded; the address gets room to breathe; Reject and Confirm carry equal width but unequal weight.</p></div>
@@ -204,7 +224,7 @@
     <h2 class="hl">Recognition over recall</h2>
     <p>Special Handling Codes are controlled operational vocabulary. The legacy experience gave users a text box and expected recall. The redesign makes them searchable and multi-selectable in a focused sheet.</p>
     <div class="pair-labels"><span>before</span><span style="color:#2e7d32">after</span></div>
-    <img class="fig" src="assets/kargo/shc.jpg" alt="SHC code entry before, a typed field, and after, a searchable multi-select sheet" style="margin-top:14px">
+    <img class="fig" src="assets/kargo/shc.webp" alt="SHC code entry before, a typed field, and after, a searchable multi-select sheet" style="margin-top:14px">
     <div class="cap-row c2" style="margin-top:-30px">
       <div class="cap"><h6>A text box and a hope</h6><p>"SHC Code*" sits as a typed field among fourteen others &mdash; recalled from memory, validated only on submit.</p></div>
       <div class="cap"><h6>Search, then select</h6><p>A searchable checklist in a sheet over the booking you're already in. Multi-select, because shipments routinely carry more than one code.</p></div>
@@ -268,5 +288,6 @@
     });
   }
 </script>
+<script src="case-video.js?v=20260923a"></script>
 </body>
 </html>

@@ -73,6 +73,55 @@ h4 { margin: 34px 0 4px; font-size: 20px; font-weight: 700; }
 .full { display: block; width: 100%; margin: 48px 0 0; }
 img { max-width: none; }
 
+/* A full-width figure whose phone plays the screen recording: the video sits exactly
+   over the still phone (positions measured on the 1492x960 image), and the mask trims
+   the recording's black surround to the phone body + side buttons (878x1772 crop). */
+.full-video { position: relative; }
+.full-video > img { display: block; width: 100%; }
+.phone-video {
+  position: absolute; left: 14.06%; top: 6.72%; width: 27.57%; aspect-ratio: 878 / 1772;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 878 1772' preserveAspectRatio='none'%3E%3Crect x='9' y='1' width='862' height='1770' rx='140'/%3E%3Crect x='1' y='352' width='12' height='68' rx='4'/%3E%3Crect x='1' y='481' width='12' height='135' rx='4'/%3E%3Crect x='1' y='653' width='12' height='135' rx='4'/%3E%3Crect x='866' y='527' width='12' height='214' rx='4'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 878 1772' preserveAspectRatio='none'%3E%3Crect x='9' y='1' width='862' height='1770' rx='140'/%3E%3Crect x='1' y='352' width='12' height='68' rx='4'/%3E%3Crect x='1' y='481' width='12' height='135' rx='4'/%3E%3Crect x='1' y='653' width='12' height='135' rx='4'/%3E%3Crect x='866' y='527' width='12' height='214' rx='4'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+.phone-video video { display: block; width: 100%; height: 100%; object-fit: fill; }
+/* Kargo hero (1492x672): the recording's iPhone replaces the held phone. It matches the
+   old phone's width (x 604-892) and, being taller, covers it top to bottom; the hand's
+   fingers and thumb sit beside/behind the phone, so nothing needs to overlap it. */
+.phone-video.in-hand { left: 40.28%; top: 4.31%; width: 19.66%; }
+/* A recording filling a pictured screen: the box is the screen's bounding rect on the
+   figure image and the video covers it, object-position choosing which band shows. */
+.screen-video { position: absolute; overflow: hidden; }
+.screen-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Flebo hero (2743x1415): the MacBook screen spans x 625-2190, y 242-1233, narrows
+   ~8px per side toward the top (perspective) and has ~27px rounded top corners; the
+   mask traces that shape in the box's own 1566x992 units. As in the still, the
+   recording's location bar is cropped off the top. */
+.screen-video.flebo-mac {
+  left: 22.785%; top: 17.102%; width: 57.09%; height: 70.106%;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1566 992' preserveAspectRatio='none'%3E%3Cpath d='M8 27A27 27 0 0 1 35 0H1529A27 27 0 0 1 1556 27L1566 992H0Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1566 992' preserveAspectRatio='none'%3E%3Cpath d='M8 27A27 27 0 0 1 35 0H1529A27 27 0 0 1 1556 27L1566 992H0Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+.screen-video.flebo-mac video { object-position: 50% 53.6%; }
+/* Menteiz hero (1492x735): the screenshot at x 96-1396, y 64-720 is the recording's
+   first frame centre-cropped, so the video takes its place with the same crop. The
+   extra 1% width pushes the recording's scrollbar + window edge out on the right. */
+.screen-video.menteiz-shot { left: 6.434%; top: 8.707%; width: 87.198%; height: 89.388%; }
+.screen-video.menteiz-shot video { width: 101%; }
+/* pause/play, lined up with the annotations' rule */
+.video-toggle {
+  position: absolute; left: 48.8%; top: 84.5%; width: clamp(24px, 2.4vw, 34px); height: clamp(24px, 2.4vw, 34px);
+  display: grid; place-items: center; color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; background: rgba(255, 255, 255, 0.08);
+  cursor: url("assets/cursor-pointer.svg") 9 4, pointer; transition: background 0.2s;
+}
+.video-toggle:hover { background: rgba(255, 255, 255, 0.2); }
+.video-toggle.on-photo { left: auto; top: auto; right: 2.2%; bottom: 5%; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(6px); }
+.video-toggle.on-photo:hover { background: rgba(0, 0, 0, 0.45); }
+.video-toggle svg { width: 42%; height: 42%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.video-toggle .icon-play { display: none; fill: currentColor; stroke-width: 1.2; }
+.full-video.is-paused .icon-play { display: block; }
+.full-video.is-paused .icon-pause { display: none; }
+
 /* footer */
 .zig {
   height: 30px; margin-top: 110px;

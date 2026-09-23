@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Homemade+Apple&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="case.css?v=20260914b">
-<script src="analytics.js?v=20260914c" defer></script>
+<link rel="stylesheet" href="case.css?v=20260923g">
+<script src="analytics.js?v=20260923b" defer></script>
 </head>
 <body class="cs" data-page="menteiz" data-case="Menteiz Aviation">
 <div class="cs-page">
@@ -51,7 +51,17 @@
     </div>
   </div>
 
-  <img class="full" src="assets/menteiz/hero.jpg" alt="Menteiz Aviation homepage hero: We have reinvented the future of air cargo">
+  <!-- The site recording takes the hero screenshot's place (it is the recording's first frame) -->
+  <div class="full full-video">
+    <img src="assets/menteiz/hero.jpg" alt="Menteiz Aviation homepage hero: We have reinvented the future of air cargo">
+    <div class="screen-video menteiz-shot">
+      <video src="assets/projects/menteiz.mp4?v=2" poster="assets/projects/menteiz-poster.jpg?v=2" muted playsinline loop preload="none" aria-label="Screen recording: scrolling the redesigned Menteiz Aviation site"></video>
+    </div>
+    <button class="video-toggle on-photo" type="button" aria-label="Pause video">
+      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+      <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+    </button>
+  </div>
 
   <div class="wrap">
     <h2 class="hl">Brief</h2>
@@ -269,5 +279,6 @@
     });
   }
 </script>
+<script src="case-video.js?v=20260923a"></script>
 </body>
 </html>

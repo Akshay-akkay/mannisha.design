@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Homemade+Apple&family=Poppins&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260914d">
-<script src="analytics.js?v=20260914c" defer></script>
+<link rel="stylesheet" href="styles.css?v=20260923a">
+<script src="analytics.js?v=20260923b" defer></script>
 </head>
 <body data-page="home">
 <div class="stage">
@@ -70,34 +70,53 @@
     <p>survival<span class="hand">.</span>jpg</p>
   </div>
   <div class="pj-window" id="pj-window">
-    <img class="pj-frame" src="assets/projects-window.png" alt="">
-    <p class="pj-url" aria-hidden="true">flebo.in</p>
+    <div class="pj-bar">
+      <span class="pj-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+      <button class="pj-nav pj-prev" type="button" aria-label="Previous project" data-cursor="cta" data-cursor-label="prev"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 3.5 3 8l4.5 4.5"/></svg></button>
+      <button class="pj-nav pj-next" type="button" aria-label="Next project" data-cursor="cta" data-cursor-label="next"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5"/></svg></button>
+      <div class="pj-address">
+        <p class="pj-url" aria-hidden="true">flebo.in</p>
+        <div class="pj-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+        <svg class="pj-search" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.8" cy="6.8" r="4.3"/><path d="m10 10 3.6 3.6"/></svg>
+      </div>
+      <button class="pj-nav pj-play" type="button" aria-label="Pause video" data-cursor="cta" data-cursor-label="pause">
+        <svg class="pj-icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+        <svg class="pj-icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+      </button>
+    </div>
+    <!-- Each project's screen recording fills the viewport; the window moves on when it ends -->
     <div class="pj-slides">
       <a class="pj-slide is-active" href="flebo.html" data-url="flebo.in" data-cursor="cta" data-cursor-label="view">
-        <img class="pj-shot" src="assets/projects-macbook.png" alt="Flebo redesign shown on a MacBook">
+        <div class="pj-view">
+          <video class="pj-video" src="assets/projects/flebo.mp4?v=2" poster="assets/projects/flebo-poster.jpg?v=2" muted playsinline preload="none" aria-label="Screen recording: booking a lab test on the redesigned Flebo site"></video>
+        </div>
         <div class="pj-meta">
           <h3>Re-design Flebo</h3>
           <div class="pj-tags"><span>UX Designer</span><span>Figma, Claude</span><span>2026</span></div>
         </div>
       </a>
       <a class="pj-slide" href="menteiz.html" data-url="menteizaviation.com" data-cursor="cta" data-cursor-label="view">
-        <img class="pj-shot" src="assets/projects-menteiz.jpg" alt="Menteiz Aviation homepage on a MacBook">
+        <div class="pj-view">
+          <video class="pj-video" src="assets/projects/menteiz.mp4?v=2" poster="assets/projects/menteiz-poster.jpg?v=2" muted playsinline preload="none" aria-label="Screen recording: scrolling the redesigned Menteiz Aviation site"></video>
+        </div>
         <div class="pj-meta">
           <h3>Re-design Menteiz Aviation</h3>
           <div class="pj-tags"><span>UX/UI Designer</span><span>Claude Code, Figma</span><span>2026</span></div>
         </div>
       </a>
-      <a class="pj-slide" href="kargo360.html" data-url="kargo360 &middot; a2a + d2d" data-cursor="cta" data-cursor-label="view">
-        <img class="pj-shot" src="assets/projects-kargo.jpg" alt="Kargo360 home screen on an iPhone">
+      <a class="pj-slide" href="kargo360.html" data-url="kargo360 &middot; a2a + d2d" data-plays="2" data-cursor="cta" data-cursor-label="view">
+        <div class="pj-view pj-view-device">
+          <img class="pj-backdrop" src="assets/projects-kargo.jpg" alt="">
+          <div class="pj-phone">
+            <video class="pj-video" src="assets/projects/kargo.mp4?v=2" poster="assets/projects/kargo-poster.jpg?v=2" muted playsinline preload="none" aria-label="Screen recording: scrolling the Kargo360 home screen on an iPhone"></video>
+          </div>
+        </div>
         <div class="pj-meta">
           <h3>Re-design Kargo360 App</h3>
           <div class="pj-tags"><span>UX Research, IA, UI</span><span>Figma</span><span>2025</span></div>
         </div>
       </a>
     </div>
-    <button class="pj-nav pj-prev" type="button" aria-label="Previous project" data-cursor="cta" data-cursor-label="prev"></button>
-    <button class="pj-nav pj-next" type="button" aria-label="Next project" data-cursor="cta" data-cursor-label="next"></button>
-    <div class="pj-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
   </div>
   <img class="pj-dock" src="assets/projects-dock.png" alt="macOS dock">
   <button class="pj-dock-hot" type="button" style="left:602px" data-slide="0" aria-label="Show Flebo" data-cursor="cta" data-cursor-label="flebo"></button>
@@ -472,42 +491,79 @@
     }));
   })();
 
-  // Projects window: three case studies behind the browser chrome's back/forward arrows
+  // Projects window: three case studies behind the browser chrome's back/forward arrows.
+  // The active project's screen recording plays while the window is on screen and
+  // the window moves on when it ends (data-plays: how many times a short clip runs
+  // first). The active dot fills with playback progress. Hovering with a mouse
+  // keeps the current project looping; reduced-motion starts paused.
   (function () {
     const win = document.getElementById('pj-window');
     const slides = [...win.querySelectorAll('.pj-slide')];
+    const videos = slides.map((s) => s.querySelector('video'));
+    videos.forEach((v) => { v.defaultPlaybackRate = v.playbackRate = 1.25; });   // recordings play a touch faster than real time
     const dots = [...win.querySelectorAll('.pj-dots span')];
     const url = win.querySelector('.pj-url');
+    const toggle = win.querySelector('.pj-play');
     const hots = [...document.querySelectorAll('.pj-dock-hot')];
     const dockDot = document.querySelector('.pj-dock-dot');
-    let i = 0;
+    let i = 0, plays = 0, visible = false, hovered = false;
+    let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const progress = () => {
+      const v = videos[i], need = +slides[i].dataset.plays || 1;
+      if (v.duration) dots[i].style.setProperty('--p', Math.min(1, (plays + v.currentTime / v.duration) / need).toFixed(4));
+    };
+    let raf = 0;
+    const tick = () => { progress(); raf = videos[i].paused ? 0 : requestAnimationFrame(tick); };
+
+    // Only the active recording plays, and only while it can be seen
+    const sync = () => {
+      videos.forEach((v, k) => { if (k !== i && !v.paused) v.pause(); });
+      const v = videos[i];
+      if (visible && !paused && !document.hidden) {
+        v.play().then(() => { if (!raf) tick(); }, (err) => {
+          if (err.name === 'NotAllowedError') setPaused(true);   // autoplay blocked (e.g. iOS Low Power Mode)
+        });
+      } else v.pause();
+    };
+    const setPaused = (p) => {
+      paused = p;
+      win.classList.toggle('is-paused', p);
+      toggle.setAttribute('aria-label', p ? 'Play video' : 'Pause video');
+      toggle.dataset.cursorLabel = p ? 'play' : 'pause';
+      sync();
+    };
+
     const go = (n) => {
       i = (n + slides.length) % slides.length;
+      plays = 0;
       slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
-      dots.forEach((d, k) => d.classList.toggle('on', k === i));
+      dots.forEach((d, k) => { d.classList.toggle('on', k === i); d.style.setProperty('--p', 0); });
       url.innerHTML = slides[i].dataset.url;
       const h = hots.find((b) => +b.dataset.slide === i);   // running-app dot under the active icon
       if (h) dockDot.style.left = (h.offsetLeft + h.offsetWidth / 2 - 3) + 'px';
+      videos[i].currentTime = 0;
+      sync();
     };
+
+    videos.forEach((v, k) => v.addEventListener('ended', () => {
+      if (k !== i) return;
+      const need = +slides[k].dataset.plays || 1;
+      plays++;
+      if (plays < need || hovered) { plays = Math.min(plays, need - 1); v.currentTime = 0; sync(); }
+      else go(i + 1);
+    }));
+
+    setPaused(paused);
     go(0);
-    // Auto-cycle every 6s while the window is on screen; any manual pick restarts
-    // the clock, hovering the window pauses it, reduced-motion turns it off.
-    const CYCLE = 6000;
-    let timer = null, visible = false, hovered = false;
-    const stop = () => { clearInterval(timer); timer = null; };
-    const start = () => {
-      if (timer || !visible || hovered || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      timer = setInterval(() => go(i + 1), CYCLE);
-    };
-    const restart = () => { stop(); start(); };
-    const pick = (n) => { go(n); restart(); };
-    win.querySelector('.pj-prev').addEventListener('click', () => pick(i - 1));
-    win.querySelector('.pj-next').addEventListener('click', () => pick(i + 1));
-    document.querySelectorAll('[data-slide]').forEach((b) => b.addEventListener('click', () => pick(+b.dataset.slide)));
-    win.addEventListener('mouseenter', () => { hovered = true; stop(); });
-    win.addEventListener('mouseleave', () => { hovered = false; start(); });
-    new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? start() : stop(); }, { threshold: 0.4 }).observe(win);
-    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    toggle.addEventListener('click', () => setPaused(!paused));
+    win.querySelector('.pj-prev').addEventListener('click', () => go(i - 1));
+    win.querySelector('.pj-next').addEventListener('click', () => go(i + 1));
+    document.querySelectorAll('[data-slide]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.slide)));
+    win.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovered = true; });
+    win.addEventListener('pointerleave', () => { hovered = false; });
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; sync(); }, { threshold: 0.4 }).observe(win);
+    document.addEventListener('visibilitychange', sync);
   })();
 
   // Nav links scroll to their sections (positions on the 1440px canvas, times current scale)

@@ -56,10 +56,12 @@
     if (a.matches('.pj-dock-hot')) return track(['flebo', 'menteiz', 'kargo360'][+a.dataset.slide] + '_dock_click');
     if (a.matches('.pj-prev')) return track('project_prev_arrow_click');
     if (a.matches('.pj-next')) return track('project_next_arrow_click');
+    if (a.matches('.pj-play')) return track(a.getAttribute('aria-label') === 'Play video' ? 'project_video_play_click' : 'project_video_pause_click');
     if (a.matches('.pj-slide') && proj) return track(proj + '_case_study_click');
 
     // Case study pages
     if (a.matches('.back') || a.matches('.foot-row a')) return track('back_to_desk_click');
     if (a.matches('.next-link') && proj) return track(proj + '_next_up_click');
+    if (a.matches('.video-toggle')) return track(page + (a.getAttribute('aria-label') === 'Play video' ? '_video_play_click' : '_video_pause_click'));
   }, true);
 })();
