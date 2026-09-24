@@ -29,6 +29,10 @@ h2, h3 { font-weight: 400; }
 a { color: inherit; text-decoration: none; }
 
 .hand { font-family: 'Homemade Apple', cursive; font-weight: 400; }
+.nowrap { white-space: nowrap; }
+
+/* collage groups: layout-neutral on desktop, scaled as one piece on phones */
+.m-group { display: contents; }
 
 .rot-wrap {
   position: absolute;
@@ -57,10 +61,25 @@ a { color: inherit; text-decoration: none; }
 .hero-photo-1 { position: absolute; left: 1061px; top: 454px; width: 379px; height: 506px; object-fit: cover; }
 
 .hero-tagline {
-  position: absolute; left: 307px; top: 415px;
+  position: absolute; left: 307px; top: 352px;
   font-size: 65px; line-height: 109.811px; letter-spacing: -2.37px;
-  color: #e0b9e2; white-space: nowrap;
+  color: #e0b9e2; white-space: nowrap; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
+/* who / what / where, and the two things a recruiter wants next */
+.hero-sub {
+  position: absolute; left: 50%; transform: translateX(-50%); top: 468px; width: 680px;
+  text-align: center; font-size: 20px; line-height: 30px; font-weight: 500; color: #fff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+.hero-ctas { position: absolute; left: 50%; transform: translateX(-50%); top: 552px; display: flex; gap: 12px; }
+.hero-cta {
+  display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 22px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9); font-weight: 700; font-size: 16px; color: #0d1f0d; white-space: nowrap;
+  filter: drop-shadow(0 8px 9px rgba(0, 0, 0, 0.12)); transition: transform 0.2s ease;
+}
+.hero-cta:hover { transform: translateY(-2px); }
+.hero-cta-work { background: #e0b9e2; }
+.hero-cta img { width: 18px; height: 18px; transform: rotate(90deg); }
 
 .hero-photo-2-wrap { left: 234.21px; top: 722.21px; width: 354.414px; height: 354.414px; }
 .hero-photo-2 { width: 263px; height: 263px; transform: rotate(27.34deg); object-fit: cover; }
@@ -83,7 +102,7 @@ a { color: inherit; text-decoration: none; }
 .hero-photo-7 { width: 370.648px; height: 370.648px; transform: rotate(27.34deg); object-fit: cover; }
 
 .hero-name {
-  position: absolute; left: 50%; transform: translateX(-50%); top: 358px;
+  position: absolute; left: 50%; transform: translateX(-50%); top: 296px;
   display: flex; align-items: center; justify-content: center; gap: 23px;
 }
 .hero-script {
@@ -122,13 +141,13 @@ a { color: inherit; text-decoration: none; }
   position: absolute; left: 0; top: 959px; width: 1440px; height: 739px;
   background: #fff; overflow: hidden;
 }
-.about-row { position: absolute; left: 64px; top: 280px; display: flex; align-items: center; gap: 96px; }
+.about-row { position: absolute; left: 64px; top: 258px; display: flex; align-items: center; gap: 96px; }
 .about-heading {
   flex-shrink: 0; width: 583px;
   font-size: 119.36px; line-height: 109.811px; letter-spacing: -5.3712px; color: #141414;
 }
 .about-text {
-  position: relative; width: 531.468px; height: 287px;
+  position: relative; width: 531.468px; height: 330px;
   padding: 12px 24px 12px 28px;
   display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
 }
@@ -138,7 +157,7 @@ a { color: inherit; text-decoration: none; }
 .about-text .about-note { font-size: 17px; line-height: 33px; color: #2e5c3a; }
 .corner { position: absolute; width: 20px; height: 20px; }
 .corner-tr { left: 511.46px; top: 0; border-top: 2px solid #141414; border-right: 2px solid #141414; }
-.corner-bl { left: 0; top: 267px; border-bottom: 2px solid #141414; border-left: 2px solid #141414; }
+.corner-bl { left: 0; top: 310px; border-bottom: 2px solid #141414; border-left: 2px solid #141414; }
 
 /* ===== Projects — macOS desktop theme (1694 – 2738) =====
    Geometry and imagery from the Figma frame; bitmaps exported at 2x. */
@@ -323,7 +342,7 @@ a { color: inherit; text-decoration: none; }
 }
 .procreate::before { z-index: 1; }
 .procreate-flower { position: absolute; left: 62px; top: 191px; width: 1058px; height: 1058px; opacity: 0.42; object-fit: cover; z-index: 0; }
-.procreate > *:not(.procreate-flower) { z-index: 2; }
+.procreate > *:not(.procreate-flower), .procreate-arts > * { z-index: 2; }
 .procreate-heading {
   position: absolute; left: 64px; top: 235px; width: 623px;
   font-size: 119.36px; line-height: 109.811px; letter-spacing: -5.3712px; color: #141414;
@@ -466,4 +485,118 @@ a { color: inherit; text-decoration: none; }
   76.67%  { translate: 22.6px 79.7px;                               /* tip at box's bottom-right corner */
             animation-timing-function: ease-out; }
   100%    { opacity: 1; translate: 0 0; }                           /* releases, settles at design spot */
+}
+
+/* ===== Phones (≤ 820px): a 390px canvas, scaled to the viewport by index.html =====
+   Text is laid out again at reading size; the photo collages keep their desktop
+   composition, scaled down as one piece (translate + scale on their group, so
+   everything inside still uses the 1440px coordinates above).
+   Sections: hero 0 · about 600 · projects 1200 · recap 1880 · cart 2250 ·
+   procreate 2850 · let's talk 3730 · end 4450 */
+@media (max-width: 820px) {
+  .page { width: 390px; height: 4450px; }
+  .about::before, .procreate::before { background-size: 40px 40px; }
+  .m-group {
+    display: block; position: absolute; left: 0; top: 0; width: 1440px; height: 8212px;
+    transform-origin: 0 0; pointer-events: none;
+  }
+
+  /* hero */
+  .hero-bg { width: 390px; height: 530px; }
+  .top-nav { top: 14px; width: 362px; height: 56px; padding: 0 20px; left: 50%; }
+  .nav-logo { font-size: 24px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 14px; }
+  .nav-cta { display: none; }
+  .hero-name { top: 92px; flex-direction: column; gap: 0; }
+  .hero-script { font-size: 30px; line-height: 52px; letter-spacing: -2px; }
+  .hero-tagline {
+    left: 0; top: 184px; width: 390px; white-space: normal; text-align: center;
+    font-size: 38px; line-height: 42px; letter-spacing: -1.4px;
+  }
+  .hero-sub { top: 276px; width: 340px; font-size: 15px; line-height: 22px; }
+  .hero-ctas { top: 354px; gap: 10px; }
+  .hero-cta { height: 44px; padding: 0 18px; font-size: 15px; }
+  /* collage: portrait centre x 719.5 -> 195, top 659 -> 420; k = 0.36 */
+  .hero-collage { transform: translate(-64px, 182.8px) scale(0.36); }
+
+  /* about */
+  .about { top: 600px; width: 390px; height: 600px; }
+  .about-row { left: 20px; top: 56px; flex-direction: column; align-items: flex-start; gap: 28px; }
+  .about-heading { width: auto; font-size: 56px; line-height: 52px; letter-spacing: -2.5px; }
+  .about-text { width: 350px; height: auto; padding: 18px 20px; }
+  .about-text p { width: auto; padding-top: 18px; font-size: 16px; line-height: 24px; }
+  .about-text p.pt16 { padding-top: 12px; }
+  .about-text .about-note { font-size: 15px; line-height: 28px; }
+  .corner-tr { left: auto; right: 0; }
+  .corner-bl { top: auto; bottom: 0; }
+
+  /* projects */
+  #work { top: 1200px !important; }
+  .projects-bg { left: 0; top: 1200px; width: 390px; height: 640px; }
+  .projects-heading { top: 1230px; }
+  .projects-title { font-size: 68px; line-height: 64px; letter-spacing: -3px; }
+  .projects-script { top: 48px; font-size: 24px; line-height: 28px; letter-spacing: -1px; }
+  .pj-calendar { left: 12px; top: 1214px; width: 62px; height: 62px; }
+  .pj-folder { left: 322px; top: 1210px; width: 56px; }
+  .pj-folder-icon { width: 56px; height: 56px; }
+  .pj-folder-clip { left: 48px; top: 30px; width: 30px; height: 29px; }
+  .pj-folder-caption { font-size: 11px; }
+  .pj-survival { display: none; }
+  .pj-window { left: 12px; top: 1350px; width: 366px; border-radius: 14px; }
+  .pj-bar { height: 42px; gap: 6px; padding: 0 10px 0 12px; }
+  .pj-lights { gap: 6px; margin-right: 4px; }
+  .pj-lights i { width: 9px; height: 9px; }
+  .pj-nav { width: 26px; height: 26px; }
+  .pj-address { gap: 8px; margin: 0 2px; padding: 0 10px 0 12px; }
+  .pj-url { font-size: 12px; }
+  .pj-search { display: none; }
+  .pj-meta { flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; height: auto; padding: 10px 14px 12px; }
+  .pj-meta h3 { font-size: 17px; line-height: 22px; }
+  .pj-tags { gap: 14px; font-size: 12px; line-height: 18px; }
+  /* dock at 0.6 scale; tap targets follow its icons */
+  .pj-dock { left: 55px; top: 1730px; width: 280px; height: 67px; }
+  .pj-dock-hot { top: 1738px; width: 38px; height: 42px; border-radius: 10px; }
+  .pj-dock-hot[data-slide="0"] { left: 123px !important; }
+  .pj-dock-hot[data-slide="1"] { left: 169px !important; }
+  .pj-dock-hot[data-slide="2"] { left: 217px !important; }
+  .pj-dock-dot { top: 1785px; width: 4px; height: 4px; }
+  .pj-dog { left: 300px; top: 1752px; width: 90px; height: 83px; }
+
+  /* monthly recap: (124, 2826) -> (21, 1880); k = 0.3. Captions set larger in
+     canvas units so they land at ~10-11px */
+  .recap-group { transform: translate(-16.2px, 1032.2px) scale(0.3); }
+  .recap-caption span, .recap-filename { font-size: 36px; line-height: 40px; white-space: nowrap; }
+  .filename-lg { font-size: 40px; }
+  .recap-caption img { width: 30px; height: 30px; }
+
+  /* life in a cart: title sits above the basket; (114, 3971) -> (10, 2300); k = 0.35 */
+  .cart-title {
+    left: 0; top: 2250px; width: 390px; text-align: center;
+    font-size: 52px; line-height: 60px; letter-spacing: -2.4px; color: #141414; text-shadow: none;
+  }
+  .cart-bg { top: 2404px; width: 390px; height: 311px; }
+  .cart-collage {
+    inset: auto; left: 0; top: 0; width: 1440px; height: 8212px;
+    transform-origin: 0 0; transform: translate(-29.9px, 910.15px) scale(0.35);
+  }
+
+  /* procreate: artworks (80, 94) -> (8, 200) within the section; k = 0.3 */
+  .procreate { top: 2850px; width: 390px; height: 880px; }
+  .procreate-flower { left: -60px; top: 130px; width: 500px; height: 500px; }
+  .procreate-heading { left: 20px; top: 40px; width: 350px; font-size: 50px; line-height: 48px; letter-spacing: -2.2px; }
+  .procreate-arts { width: 1440px; height: 1747px; transform: translate(-16px, 171.8px) scale(0.3); }
+  .procreate-quote { left: 20px; top: 700px; width: 350px; font-size: 15px; line-height: 27px; }
+
+  /* let's talk */
+  .talk2 { top: 3730px; width: 390px; height: 720px; }
+  .t2-art { object-position: 50% 100%; }
+  .t2-head { top: 36px; }
+  .t2-head h2 { font-size: 60px; line-height: 60px; letter-spacing: -2.5px; }
+  .t2-sub { margin-top: 8px; padding: 0 20px; font-size: 13px; line-height: 24px; }
+  .t2-pill { font-size: 16px; }
+  .t2-resume { left: 34px; top: 226px; width: 150px; height: 48px; }
+  .t2-email { left: 96px; top: 302px; width: 266px; height: 48px; font-size: 15px; transform: rotate(-6deg); }
+  .t2-linkedin { left: 284px; top: 202px; width: 72px; height: 72px; }
+  .t2-chai { top: 670px; font-size: 17px; }
 }

@@ -47,6 +47,9 @@
 
     // Home: nav + contact CTAs
     if (a.matches('.nav-cta')) return track('lets_chat_click');
+    if (a.matches('.nav-resume')) return track('nav_resume_click');
+    if (a.matches('.hero-cta-work')) return track('hero_see_work_click');
+    if (a.matches('.hero-cta-resume')) return track('hero_resume_click');
     if (a.matches('.nav-links a')) return track('nav_' + (a.dataset.scrollTo || 'link') + '_click');
     if (a.matches('.t2-resume')) return track('resume_click');
     if (a.matches('.t2-email')) return track('email_click');

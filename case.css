@@ -59,6 +59,7 @@ h2.hl {
   font-size: clamp(30px, 3.2vw, 46px); font-weight: 800; letter-spacing: -0.5px;
 }
 h3 { margin: 64px 0 6px; font-size: clamp(23px, 2.1vw, 30px); font-weight: 700; }
+h3.ruled { padding: 4px 0 4px 22px; border-left: 5px solid #e02020; } /* red rule, as on the pull quotes */
 h4 { margin: 34px 0 4px; font-size: 20px; font-weight: 700; }
 .cs p { margin-top: 26px; font-size: 19.5px; line-height: 1.55; max-width: 1230px; }
 .cs ul { margin: 18px 0 0 26px; }
@@ -304,6 +305,13 @@ img { max-width: none; }
 .cap h6 { font-size: 15px; font-weight: 700; } .cs .cap p { margin-top: 4px; font-size: 14px; color: #55534c; }
 .cap-row { display: grid; gap: 24px; margin-top: 14px; }
 .cap-row.c2 { grid-template-columns: 1fr 1fr; } .cap-row.c3 { grid-template-columns: repeat(3, 1fr); } .cap-row.c4 { grid-template-columns: repeat(4, 1fr); }
+/* captions under a multi-screen figure: the row spans the figure's full width and
+   --cols (spacer, screen, spacer, screen, ..., rest; % of the figure image) puts
+   each caption under its own screen, starting at that screen's left edge */
+.cap-row.aligned { grid-template-columns: var(--cols); gap: 0; width: calc(100% + 52px); margin: -34px -26px 0; }
+.cap-row.aligned > :nth-child(1) { grid-column: 2; } .cap-row.aligned > :nth-child(2) { grid-column: 4; }
+.cap-row.aligned > :nth-child(3) { grid-column: 6; } .cap-row.aligned > :nth-child(4) { grid-column: 8; }
+.cap-row.aligned > .cap { padding-right: 12px; }
 .side-fig { display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: start; margin-top: 30px; }
 .side-fig .fig { width: 100%; margin: 0; }
 .annots div { padding: 14px 0 14px 16px; border-left: 3px solid #f2c200; margin-top: 14px; }
@@ -332,6 +340,8 @@ img { max-width: none; }
   .intent { grid-template-columns: 1fr; } .sec { grid-template-columns: 1fr; gap: 16px; }
   .err { grid-template-columns: 1fr; gap: 8px; } .side-fig { grid-template-columns: 1fr; }
   .bar { grid-template-columns: 120px 1fr 36px; } .obj { grid-template-columns: 1fr; gap: 6px; }
+  .cap-row.aligned { grid-template-columns: 1fr; gap: 24px; width: auto; margin: 0; }
+  .cap-row.aligned > .cap { grid-column: auto; padding-right: 0; }
   .htable td:first-child { width: auto; }
 }
 
@@ -439,6 +449,21 @@ body.kargo .notes h5 { font-size: 17px; }
   .obj-row { grid-template-columns: 1fr; gap: 6px; }
   .nest .obj { padding: 0 10px 12px; }
   .cs .card ol.steps { margin-left: 8px; }
+  body.kargo .chain { gap: 10px; padding: 16px; }
+  body.kargo .chain span { padding: 8px 14px; }
+  .audit { padding: 20px 16px 22px; }
+  .arow { grid-template-columns: 1fr; gap: 6px; }
+  /* the three counts stay on one line in equal columns, centred, so each separator
+     sits exactly midway between its neighbours; labels wrap under their number */
+  .stats.divided { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 !important; padding-top: 26px; text-align: center; }
+  .cs .stats.divided .v { margin-top: 0; } /* spacing moved to the row, so each stat box is just its visible text */
+  .stats.divided .stat, .stats.divided .stat:first-child { position: relative; min-width: 0; padding: 0 8px; border-left: 0; }
+  /* short centred rules instead of full-height borders, so they read as separators */
+  .stats.divided .stat + .stat::before {
+    content: ""; position: absolute; left: 0; top: 50%; width: 2px; height: 44px;
+    translate: -1px -50%; background: #e02020;
+  }
+  .stats.divided .c { font-size: 13.5px; line-height: 1.35; }
 }
 body.kargo .rules-list h5::before, body.kargo .notes h5::before {
   content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 12px 0 0;
