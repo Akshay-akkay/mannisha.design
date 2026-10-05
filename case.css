@@ -103,11 +103,42 @@ img { max-width: none; }
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1566 992' preserveAspectRatio='none'%3E%3Cpath d='M8 27A27 27 0 0 1 35 0H1529A27 27 0 0 1 1556 27L1566 992H0Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
 }
 .screen-video.flebo-mac video { object-position: 50% 53.6%; }
+/* Flebo "The Design" (2743x1390): the same MacBook, its screen 24px lower at
+   x 625-2192, y 266-1258, so only the vertical placement changes. The walkthrough
+   recording (2870x2040) is taller, so more is cropped; its location bar still goes. */
+.screen-video.flebo-mac.in-design { top: 19.137%; height: 71.367%; }
+.screen-video.flebo-mac.in-design video { object-position: 50% 40.5%; }
 /* Menteiz hero (1492x735): the screenshot at x 96-1396, y 64-720 is the recording's
    first frame centre-cropped, so the video takes its place with the same crop. The
    extra 1% width pushes the recording's scrollbar + window edge out on the right. */
 .screen-video.menteiz-shot { left: 6.434%; top: 8.707%; width: 87.198%; height: 89.388%; }
 .screen-video.menteiz-shot video { width: 101%; }
+/* Menteiz shopfront (1492x625): the MacBook is photographed at an angle, so the
+   recording is laid out as a 1600x1000 screen and matrix3d maps its corners onto the
+   pictured screen's, (490,83) (1080,191) (1019,562) (464,436), in the image's own
+   pixels; --s (set in case-video.js from data-w) scales that to the rendered width. */
+.screen-video.menteiz-tilt {
+  left: 0; top: 0; width: 1600px; height: 1000px; border-radius: 14px; transform-origin: 0 0;
+  transform: scale(var(--s, 0)) matrix3d(0.32256, 0.05921, 0, -0.00004278, -0.00014, 0.37701, 0, 0.00005555, 0, 0, 1, 0, 489.7, 83, 0, 1);
+}
+.screen-video.menteiz-tilt video { object-position: 50% 0; }
+/* ...and the capability ticker beneath it (x 0-1492, y 566-623) is its own recording
+   (2870x96), a little wider than the strip, so its ends are cropped. */
+.screen-video.menteiz-ticker { left: 0; top: 90.56%; width: 100%; height: 9.12%; }
+/* Menteiz globe (1458x620): the network-page screenshot at x 308-1156, y 40-620 runs
+   off the figure's bottom edge; the recording (2870x2034) takes its place, top-aligned. */
+.screen-video.menteiz-globe { left: 21.125%; top: 6.452%; width: 58.162%; height: 93.548%; }
+.screen-video.menteiz-globe video { object-position: 50% 0; }
+.screen-video.menteiz-globe ~ .video-toggle.on-photo { right: 5%; bottom: 30%; }
+/* Menteiz shopfront-to-workspace (1492x800): the wide hero crop at x 71-1422, y 130-783
+   gives way to the full recording (2870x2034) at the same width, which is 287px taller
+   than the image allows, so the figure grows by that much and the video hangs below the
+   sky. Percentages are of the grown 1492x1087.5 box; the box starts 7px early (x 64)
+   to cover the crop's soft left fringe. */
+.full-video.menteiz-work { padding-bottom: 19.27%; }
+.screen-video.menteiz-work { left: 4.29%; top: 11.954%; width: 91.02%; bottom: 0; }
+.screen-video.menteiz-work ~ .video-toggle.on-photo { right: 5%; top: 3.5%; bottom: auto; }
+.screen-video.menteiz-tilt ~ .video-toggle.on-photo { right: 19%; bottom: 12%; }
 /* pause/play, lined up with the annotations' rule */
 .video-toggle {
   position: absolute; left: 48.8%; top: 84.5%; width: clamp(24px, 2.4vw, 34px); height: clamp(24px, 2.4vw, 34px);

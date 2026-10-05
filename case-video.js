@@ -3,13 +3,17 @@
    scrolls away or the tab is hidden; reduced-motion leaves it on its first frame
    until played. The round button toggles it. */
 document.querySelectorAll('.full-video').forEach((box) => {
-  const v = box.querySelector('video');
+  const vs = box.querySelectorAll('video');
   const btn = box.querySelector('.video-toggle');
-  v.defaultPlaybackRate = v.playbackRate = 1.25;
+  // a figure with data-w lays its video out in the image's own pixels; --s scales it to fit
+  if (box.dataset.w) new ResizeObserver(() => box.style.setProperty('--s', box.clientWidth / box.dataset.w)).observe(box);
+  vs.forEach((v) => { v.defaultPlaybackRate = v.playbackRate = 1.25; });
   let visible = false, paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const sync = () => {
-    if (visible && !paused && !document.hidden) v.play().catch((err) => { if (err.name === 'NotAllowedError') setPaused(true); });
-    else v.pause();
+    vs.forEach((v) => {
+      if (visible && !paused && !document.hidden) v.play().catch((err) => { if (err.name === 'NotAllowedError') setPaused(true); });
+      else v.pause();
+    });
   };
   const setPaused = (p) => {
     paused = p;

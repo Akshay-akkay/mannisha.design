@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Homemade+Apple&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="case.css?v=20260924h">
+<link rel="stylesheet" href="case.css?v=20261005e">
 <script src="analytics.js?v=20260924d" defer></script>
 </head>
 <body class="cs" data-page="menteiz" data-case="Menteiz Aviation">
@@ -150,7 +150,20 @@
 
     <h2 class="hl">The Shopfront</h2>
     <p>The hero uses motion to create attention; the content beneath it uses specificity to earn trust. A <strong>capability ticker</strong> immediately surfaces the eleven areas Menteiz actually handles &mdash; scheduled flights, GSA, CSA, perishables, dangerous goods, vulnerable goods, charter and more &mdash; giving users a clear sense of expertise before asking them to explore further.</p>
-    <img class="fig" src="assets/menteiz/shopfront.webp?v=2" alt="Menteiz homepage on a MacBook with the capability ticker beneath">
+    <!-- The homepage recording plays on the angled MacBook's screen -->
+    <div class="fig full-video" data-w="1492">
+      <img src="assets/menteiz/shopfront.webp?v=2" alt="Menteiz homepage on a MacBook with the capability ticker beneath">
+      <div class="screen-video menteiz-tilt">
+        <video src="assets/projects/menteiz-shopfront.mp4?v=1" muted playsinline loop preload="none" aria-label="Screen recording: scrolling the Menteiz Aviation homepage"></video>
+      </div>
+      <div class="screen-video menteiz-ticker">
+        <video src="assets/projects/menteiz-ticker.mp4?v=1" muted playsinline loop preload="none" aria-hidden="true"></video>
+      </div>
+      <button class="video-toggle on-photo" type="button" aria-label="Pause video">
+        <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+        <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+      </button>
+    </div>
     <blockquote>The homepage doesn't just tell you what Menteiz does. It lets you do it.</blockquote>
     <p>Most logistics websites make users hunt for the next step: find the right service, find the contact page, write an email, wait.</p>
     <p>I pulled the three most likely actions into one place:</p>
@@ -164,7 +177,17 @@
         <div class="row"><span class="n">3</span><span>I need to plan a shipment</span><b>Flight Schedule</b></div>
       </div>
     </div>
-    <img class="fig" src="assets/menteiz/globe.webp?v=2" alt="Global network page: draggable globe with lanes out of Kuala Lumpur and a paired route list">
+    <!-- The global-network recording plays in place of the page screenshot -->
+    <div class="fig full-video">
+      <img src="assets/menteiz/globe.webp?v=2" alt="Global network page: draggable globe with lanes out of Kuala Lumpur and a paired route list">
+      <div class="screen-video menteiz-globe">
+        <video src="assets/projects/menteiz-globe.mp4?v=1" muted playsinline loop preload="none" aria-label="Screen recording: rotating the globe and switching between international and domestic lanes"></video>
+      </div>
+      <button class="video-toggle on-photo" type="button" aria-label="Pause video">
+        <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+        <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+      </button>
+    </div>
     <h3 style="margin-top:0">Every arc is a real lane</h3>
     <p>A draggable globe of 27 international and 12 domestic routes out of Kuala Lumpur, with a paired route list so the same information is available without touching the toy. Red arcs are charter, cyan scheduled &mdash; and it degrades to the list when WebGL isn't available.</p>
     <img class="fig" src="assets/menteiz/segments.webp?v=2" alt="Who they serve and Built for cargo pages">
@@ -174,7 +197,17 @@
     </div>
   </div>
 
-  <img class="full" src="assets/menteiz/reinvented.webp?v=2" alt="Menteiz hero: We have reinvented the future of air cargo">
+  <!-- The login-to-booking recording plays in place of the hero crop -->
+  <div class="full full-video menteiz-work">
+    <img src="assets/menteiz/reinvented.webp?v=2" alt="Menteiz hero: We have reinvented the future of air cargo">
+    <div class="screen-video menteiz-work">
+      <video src="assets/projects/menteiz-workspace.mp4?v=1" poster="assets/projects/menteiz-workspace-poster.jpg?v=1" muted playsinline loop preload="none" aria-label="Screen recording: logging in from the Menteiz homepage and requesting a booking in the workspace"></video>
+    </div>
+    <button class="video-toggle on-photo" type="button" aria-label="Pause video">
+      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
+      <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z"/></svg>
+    </button>
+  </div>
 
   <div class="wrap">
     <h2 class="hl">The Workspace</h2>
@@ -272,6 +305,6 @@
     });
   }
 </script>
-<script src="case-video.js?v=20260923a"></script>
+<script src="case-video.js?v=20261005b"></script>
 </body>
 </html>
